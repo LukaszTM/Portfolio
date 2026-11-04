@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 :root{--bg:#080d19;--bg2:#0d1528;--panel:#101a2b;--panel2:#142036;--line:rgba(159,191,222,.15);--text:#edf3ff;--muted:#9cabbe;--accent:#66e4d2;--accent2:#6196ff;--accentRGB:102,228,210;--radius:20px;--shadow:0 22px 80px rgba(0,0,0,.35)}
-[data-role="rublon"]{--accent:#7de7aa;--accent2:#50bba7;--accentRGB:125,231,170}
-[data-role="blockwise"]{--accent:#a7a2ff;--accent2:#60c6ff;--accentRGB:167,162,255}
-[data-role="novelpay"]{--accent:#66e4d2;--accent2:#6bafff;--accentRGB:102,228,210}
+[data-role="systems"]{--accent:#7de7aa;--accent2:#50bba7;--accentRGB:125,231,170}
+[data-role="agentic"]{--accent:#a7a2ff;--accent2:#60c6ff;--accentRGB:167,162,255}
+[data-role="mobile"]{--accent:#66e4d2;--accent2:#6bafff;--accentRGB:102,228,210}
 *,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',system-ui,sans-serif;line-height:1.65;overflow-x:hidden}button,input{font:inherit}a{color:inherit}a:hover{color:var(--accent)}button,a{touch-action:manipulation}::selection{background:rgba(var(--accentRGB),.35)}
 #scrollprogress{position:fixed;inset:0 auto auto 0;width:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:999;transition:width .08s linear}
 .backdrop{position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(ellipse 70% 45% at 84% 3%,rgba(var(--accentRGB),.11),transparent 70%),radial-gradient(ellipse 60% 45% at 0 36%,rgba(92,108,208,.13),transparent 70%),linear-gradient(140deg,#080e19,#070c17 65%,#0b1420)}
