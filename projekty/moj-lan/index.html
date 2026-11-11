@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mój Łan · Łukasz Kap</title>
+<meta name="description" content="Dokumentacja gospodarstwa rolnego wymagana przez ARiMR i kontrole: z jednego wpisu zabiegu powstają trzy rejestry. Działa bez internetu, na telefonie i na komputerze.">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#tresc">Przejdź do treści</a>
+<header class="site"><div class="wrap nav">
+  <a class="brand" href="../../index.html"><span>ŁK/</span> Łukasz Kap</a>
+  <nav aria-label="Główna"><ul><li><a href="../../index.html">Start</a></li><li><a href="../../mobile/index.html">Mobile</a></li><li><a href="../../systems/index.html">Systems</a></li><li><a href="../../agentic/index.html">Agentic</a></li><li><a href="../../projekty/index.html" aria-current="page">Projekty</a></li><li><a href="../../pytania/index.html">Pytania i kontakt</a></li><li><a href="https://github.com/LukaszTM" target="_blank" rel="noopener">GitHub</a></li></ul></nav>
+</div></header>
+<main id="tresc" class="wrap">
+<p class="crumbs"><a href="../../index.html">Start</a> / <a href="../../projekty/index.html">Projekty</a> / Mój Łan</p>
+<article class="proj" aria-labelledby="h-mojlan">
+  <div class="proj-head">
+    <div class="proj-kind">
+      <p class="eyebrow">Aplikacja na Androida i Windows · Flutter · SQLite · Python</p>
+      <a href="https://github.com/LukaszTM/Agro_Asystent" target="_blank" rel="noopener">Repozytorium</a>
+    </div>
+    <h1 id="h-mojlan">Mój Łan: dokumentacja gospodarstwa dla ARiMR i kontroli</h1>
+    <p class="proj-sub">Rolnik zapisuje oprysk w kilku dotknięciach, a aplikacja z tego jednego wpisu składa rejestry wymagane przez przepisy. Działa bez internetu, bez konta i bez własnego serwera.</p>
+    <p class="focus"><b>Na co patrzeć:</b> progi i terminy z przepisów są danymi z numerem wersji, a nie stałymi w kodzie. Pilnuje tego test architektury, a brak danych daje wynik „do sprawdzenia”, nigdy „nie dotyczy”.</p>
+    <ul class="chips"><li>Dart 43 302 linie</li><li>Python 10 228 linii</li><li>SQLite, 12 migracji</li><li>774 testy aplikacji</li><li>159 testów skryptów</li><li>GitHub Actions: testy, APK, Windows</li></ul>
+  </div>
+
+  <div class="cols">
+    <div class="prose">
+      <h2 class="h-sm">Jak działa</h2>
+      <ol class="steps">
+        <li>Rolnik wczytuje plik PDF wniosku z eWniosekPlus albo dodaje działkę po numerze. Granice działek pobiera usługa ULDK i zostają zapisane na urządzeniu.</li>
+        <li>Wpis oprysku to wybór pola, środka i dawki. Data, godzina i powierzchnia uzupełniają się same, a środek pochodzi z urzędowego rejestru wbudowanego w aplikację.</li>
+        <li>Z jednego wpisu powstają trzy rejestry: ewidencja zabiegów środkami ochrony roślin, ewidencja nawożenia azotem i rejestr zabiegów agrotechnicznych. Każdy ma podgląd, wydruk PDF i eksport.</li>
+        <li>Silnik reguł czyta progi i terminy z pliku danych z numerem wersji i sam ustala, które obowiązki dotyczą gospodarstwa.</li>
+        <li>Kopia danych do pliku przenosi wpisy między telefonem a programem na komputer.</li>
+      </ol>
+    </div>
+    <div class="prose">
+      <h2 class="h-sm">Co było trudne</h2>
+      <p>Dane z przepisów okazały się zawodne. Współczynniki przeliczeniowe zwierząt pochodziły z uchylonego aktu i trzy wartości były błędne. Automatyczne dopasowanie kodów upraw trafiało w 44,7% przypadków i podało pięć kodów gatunków dzikich, więc do słownika wchodzą tylko kody potwierdzone.</p>
+      <p>Stąd zasada, która przechodzi przez cały projekt: aplikacja niczego nie zgaduje. Nieznana karencja zostaje pustym polem do potwierdzenia przez rolnika, a brak danych nigdy nie daje wyniku „spełnione”.</p>
+    </div>
+  </div>
+
+  <div class="shotsec">
+    <h2 class="h-sm">Ekrany aplikacji na telefonie</h2>
+    <div class="gal phones4">
+    <figure><button type="button" class="zoom" data-zoom="../../assets/img/ml-start.webp" data-cap="Start: sezon, limit azotu, najbliższy termin" aria-label="Powiększ zrzut: Start: sezon, limit azotu, najbliższy termin"><img src="../../assets/img/ml-start.webp" width="560" height="1159" loading="lazy" alt="Ekran startowy: sezon 2026, liczba pól, hektary użytków rolnych i liczba zabiegów, pasek azotu z nawozów naturalnych, najbliższy termin i ostatni zabieg."></button><figcaption>Start: sezon, limit azotu, najbliższy termin</figcaption></figure>
+    <figure><button type="button" class="zoom" data-zoom="../../assets/img/ml-dokumenty.webp" data-cap="Dokumenty: trzy rejestry i kontrola kompletności" aria-label="Powiększ zrzut: Dokumenty: trzy rejestry i kontrola kompletności"><img src="../../assets/img/ml-dokumenty.webp" width="560" height="1159" loading="lazy" alt="Ekran Dokumenty: wybór rejestru Opryski, Nawożenie azotem albo Ekoschematy, wybór okresu oraz ostrzeżenie, że jeden wpis nie ma kompletu danych wymaganych przepisem."></button><figcaption>Dokumenty: trzy rejestry i kontrola kompletności</figcaption></figure>
+    <figure><button type="button" class="zoom" data-zoom="../../assets/img/ml-terminy.webp" data-cap="Terminy: obowiązki z datą i podstawą" aria-label="Powiększ zrzut: Terminy: obowiązki z datą i podstawą"><img src="../../assets/img/ml-terminy.webp" width="560" height="1159" loading="lazy" alt="Ekran Terminy: skrót do warunkowości, przełącznik przypomnień i lista terminów z liczbą dni oraz obowiązkiem, z którego wynikają."></button><figcaption>Terminy: obowiązki z datą i podstawą</figcaption></figure>
+    <figure><button type="button" class="zoom" data-zoom="../../assets/img/ml-kalendarz.webp" data-cap="Kalendarz biodynamiczny, widok miesiąca" aria-label="Powiększ zrzut: Kalendarz biodynamiczny, widok miesiąca"><img src="../../assets/img/ml-kalendarz.webp" width="560" height="1159" loading="lazy" alt="Kalendarz biodynamiczny na listopad 2026 z ikonami dni liścia, owocu i korzenia oraz legendą."></button><figcaption>Kalendarz biodynamiczny, widok miesiąca</figcaption></figure>
+    </div>
+    <p class="demo-note">Zrzuty z telefonu, 11.11.2026. Ekran startowy pochodzi z wersji testowej sprzed zmiany nazwy z Agro Asystent na Mój Łan. Kliknij zrzut, żeby go powiększyć.</p>
+  </div>
+
+  <div class="demo" id="demo-ml">
+    <div class="demo-head">
+      <p class="eyebrow">Demo na żywo</p>
+      <p class="demo-note">Metody <code>Prog.oceny</code> i <code>Obowiazek.ocena</code> z pliku <code>lib/rdzen/reguly/regula_prawna.dart</code> przeniesione do JavaScript. Progi i współczynniki pochodzą z pliku <code>assets/dane/reguly_prawne.json</code>, wersja <span id="ml-ver"></span>.</p>
+    </div>
+    <div class="demo-body">
+      <div class="ml">
+        <form id="ml-form" class="ml-form">
+          <fieldset>
+            <legend>Gospodarstwo</legend>
+            <label for="ml-ur">Użytki rolne (ha)</label>
+            <input type="text" inputmode="decimal" id="ml-ur" value="9,5" autocomplete="off">
+            <label for="ml-int">Uprawy intensywne (ha)</label>
+            <input type="text" inputmode="decimal" id="ml-int" value="0" autocomplete="off">
+            <label class="ml-check"><input type="checkbox" id="ml-eko"> Zadeklarowany ekoschemat</label>
+          </fieldset>
+          <fieldset>
+            <legend>Zwierzęta</legend>
+            <label class="ml-check"><input type="radio" name="ml-zw" value="brak"> Brak odpowiedzi rolnika</label>
+            <label class="ml-check"><input type="radio" name="ml-zw" value="nie"> Nie mam zwierząt</label>
+            <label class="ml-check"><input type="radio" name="ml-zw" value="tak"> Mam, ale stado nie jest wpisane</label>
+            <label class="ml-check"><input type="radio" name="ml-zw" value="stado" checked> Stado wpisane w rejestrze</label>
+            <div class="ml-herd" id="ml-herd"></div>
+            <p class="demo-note" id="ml-djp"></p>
+          </fieldset>
+        </form>
+        <div class="btnrow">
+          <span class="btnrow-label">Przykłady:</span>
+          <button type="button" class="btn btn-sm" data-ml="male">8 ha bez zwierząt</button>
+          <button type="button" class="btn btn-sm" data-ml="krowy">9,5 ha i 12 krów</button>
+          <button type="button" class="btn btn-sm" data-ml="granica">Dokładnie 10 ha</button>
+          <button type="button" class="btn btn-sm" data-ml="niewiem">9 ha, stado niewpisane</button>
+          <button type="button" class="btn btn-sm" data-ml="duze">120 ha z ekoschematem</button>
+        </div>
+        <p class="ml-sum" id="ml-sum" aria-live="polite"></p>
+        <ul class="ml-out" id="ml-out"></ul>
+        <details class="ml-json">
+          <summary>Ta sama reguła w pliku danych</summary>
+          <pre id="ml-json"></pre>
+        </details>
+        <p class="demo-note">Zestawienie przepisów w repozytorium służy do zaplanowania aplikacji i nie jest poradą prawną.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="evidence">
+    <h2 class="h-sm">Testy w repozytorium</h2>
+    <ul>
+      <li><b>Aplikacja</b>, 774 testy w 67 plikach: reguły prawne, baza z migracjami, czytnik wniosku PDF, rejestry, karencja, cztery normy warunkowości oraz ekrany obu wyglądów telefonu i programu na komputer. Liczba policzona w kodzie, bez uruchamiania.</li>
+      <li><b>Skrypty danych</b>, 159 testów w 12 plikach. Uruchomione 10.11.2026: 139 zaliczonych, 20 pominiętych, bo wymagają urzędowych plików, których w repozytorium celowo nie ma.</li>
+      <li><b>Test architektury</b> pilnuje zasad projektu: logika nie importuje ekranów, liczby z przepisów nie trafiają do kodu, a o funkcjach płatnych decyduje jeden katalog.</li>
+    </ul>
+    <p class="demo-note">GitHub Actions po każdej zmianie sprawdza formatowanie, analizę statyczną i testy, a osobne przepływy budują plik APK i program na Windows.</p>
+    <h2 class="h-sm">Wydania testowe do pobrania</h2>
+    <ul>
+      <li><a href="https://github.com/LukaszTM/Agro_Asystent/releases/tag/apk-test" target="_blank" rel="noopener">Mój Łan na Androida</a>: plik APK budowany automatycznie po każdej zmianie kodu.</li>
+      <li><a href="https://github.com/LukaszTM/Agro_Asystent/releases/tag/pc-test" target="_blank" rel="noopener">Mój Łan na Windows</a>: paczka ZIP z programem, bez instalatora i bez logowania.</li>
+    </ul>
+    <p class="demo-note">To wydania dla testerów. Program na Windows nie ma płatnego certyfikatu, więc system pokaże ostrzeżenie przy pierwszym uruchomieniu.</p>
+  </div>
+</article>
+
+<section class="sec" aria-labelledby="h-zas">
+  <h2 id="h-zas">Zasady projektu i to, co ich pilnuje</h2>
+  <p class="intro">Reguły są spisane w pliku <code>CLAUDE.md</code>. Część z nich sprawdza test, więc złamanie zasady zatrzymuje budowanie.</p>
+  <div class="tscroll"><table class="t">
+    <thead><tr><th>Zasada</th><th>Jak jest pilnowana</th></tr></thead>
+    <tbody>
+      <tr><td>Żadnych progów, dat i stawek na stałe w kodzie</td><td>Test architektury szuka w kodzie liczb z przepisów. Dane leżą w <code>assets/dane/reguly_prawne.json</code> z numerem wersji.</td></tr>
+      <tr><td>Logika nie zależy od wyglądu</td><td>Test sprawdza, że <code>lib/rdzen</code> i <code>lib/funkcje</code> nie importują niczego z <code>lib/wyglad</code>, a trzy warstwy ekranów nie importują siebie nawzajem.</td></tr>
+      <tr><td>Jedno miejsce decyduje o funkcjach płatnych</td><td>Test dopuszcza pytanie o premium tylko w katalogu <code>lib/rdzen/dostep</code>.</td></tr>
+      <tr><td>Przepis się zmienił, więc dane też muszą</td><td>Skrypt <code>tools/warunkowosc/normy_gaec.py</code> porównuje wartości z brzmieniem rozporządzenia i odmawia zapisu przy rozbieżności.</td></tr>
+      <tr><td>Żadnych danych osobowych w repozytorium</td><td>Testy czytnika wniosku działają na wzorcu PDF ze zmyślonymi danymi, wytwarzanym przez skrypt.</td></tr>
+      <tr><td>Nie zgadujemy karencji ani dawek</td><td>Nieznana wartość zostaje pustym polem „do potwierdzenia”. Silnik ma trzeci wynik obok „dotyczy” i „nie dotyczy”.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+<section class="sec" aria-labelledby="h-etapy">
+  <h2 id="h-etapy">Przebieg prac</h2>
+  <div class="tscroll"><table class="t">
+    <thead><tr><th>Etap</th><th>Zakres</th><th>Stan po etapie</th></tr></thead>
+    <tbody>
+      <tr><td>Przygotowanie, P0–P7</td><td>Import rejestru środków ochrony roślin z pliku XLSX do SQLite, odczyt karencji z etykiet, słownik upraw, czytnik wniosku PDF, klient ULDK, model danych.</td><td>2 967 środków i 18 632 zastosowania w bazie wbudowanej w aplikację</td></tr>
+      <tr><td>Etap 1</td><td>Działki i mapa, rejestr zabiegów, trzy rejestry z wydrukiem i eksportem, terminy, nawożenie, odczyt zdjęć etykiet, stado, kopia danych.</td><td>413 testów</td></tr>
+      <tr><td>Etap 2</td><td>Cztery normy warunkowości liczone z wpisów rolnika oraz magazyn środków i nawozów.</td><td>594 testy</td></tr>
+      <tr><td>Etap 3</td><td>Program na Windows: pulpit z wykresem zasiewów, pola, pogoda, wiadomości, kalendarz.</td><td>679 testów</td></tr>
+      <tr><td>Testy u użytkowników</td><td>Pakiet dla testerów z instrukcjami i planami testów. Zgłoszenia z 19.10.2026 zapisane w planie jako kolejne zadania.</td><td>774 testy w kodzie</td></tr>
+    </tbody>
+  </table></div>
+  <p class="demo-note">Liczby testów po etapach pochodzą z raportów w katalogu <code>docs/raporty</code>. Historia zmian obejmuje 122 commity z okresu 12–19.10.2026.</p>
+</section>
+<section class="sec" aria-labelledby="h-zr">
+  <h2 id="h-zr">Źródła danych</h2>
+  <div class="gates">
+    <div><b>Rejestr środków ochrony roślin</b><span>Plik zastosowań z ministerstwa rolnictwa, przetwarzany skryptem na komputerze dewelopera, nigdy z telefonu rolnika.</span></div>
+    <div><b>Granice działek</b><span>Usługa ULDK. Próba na prawdziwym wniosku: 20 z 20 działek pobranych.</span></div>
+    <div><b>Wniosek o płatności</b><span>Czytnik tabel z PDF z kontrolą sumy powierzchni.</span></div>
+    <div><b>Przepisy</b><span>Program azotanowy, normy warunkowości i 93 grupy współczynników DJP, każda wartość ze źródłem i statusem weryfikacji.</span></div>
+  </div>
+</section>
+<p class="pager"><a href="../../projekty/mr-python/index.html">← Mr.Python</a><a href="../../projekty/boxbox-academy/index.html">BoxBox Academy →</a></p>
+</main>
+<footer class="site-foot"><div class="wrap">
+  <nav aria-label="Stopka"><a href="../../index.html">Wróć do wyboru roli</a><a href="../../projekty/index.html">Wszystkie projekty</a><a href="../../pytania/index.html">Pytania i kontakt</a><a href="https://github.com/LukaszTM" target="_blank" rel="noopener">GitHub</a></nav>
+  <p>Projekty własne i dowody techniczne · listopad 2026 · bez fikcyjnych wyników AI. Dema to wierne przeniesienia fragmentów logiki do JavaScript albo dane z prawdziwych nagrań, a nie pełne programy.</p>
+</div></footer>
+<script src="../../assets/js/common.js"></script>
+<script src="../../assets/js/mojlan-data.js"></script>
+<script src="../../assets/js/mojlan.js"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Thrustmaster → SimRail · Łukasz Kap</title>
+<meta name="description" content="Przepustnica lotnicza steruje lokomotywą: program zamienia położenie dźwigni na naciśnięcia klawiszy w symulatorze.">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#tresc">Przejdź do treści</a>
+<header class="site"><div class="wrap nav">
+  <a class="brand" href="../../index.html"><span>ŁK/</span> Łukasz Kap</a>
+  <nav aria-label="Główna"><ul><li><a href="../../index.html">Start</a></li><li><a href="../../mobile/index.html">Mobile</a></li><li><a href="../../systems/index.html">Systems</a></li><li><a href="../../agentic/index.html">Agentic</a></li><li><a href="../../projekty/index.html" aria-current="page">Projekty</a></li><li><a href="../../pytania/index.html">Pytania i kontakt</a></li><li><a href="https://github.com/LukaszTM" target="_blank" rel="noopener">GitHub</a></li></ul></nav>
+</div></header>
+<main id="tresc" class="wrap">
+<p class="crumbs"><a href="../../index.html">Start</a> / <a href="../../projekty/index.html">Projekty</a> / Thrustmaster → SimRail</p>
+<article class="proj" aria-labelledby="h-tca">
+  <div class="proj-head">
+    <div class="proj-kind">
+      <p class="eyebrow">Narzędzie dla Windows · Python 3</p>
+      <a href="https://github.com/LukaszTM/Thrustmaster-train-control" target="_blank" rel="noopener">Repozytorium</a>
+    </div>
+    <h1 id="h-tca">Thrustmaster → SimRail: przepustnica lotnicza steruje lokomotywą</h1>
+    <p class="proj-sub">SimRail nie czyta osi analogowych joysticka. Program odczytuje dźwignie przepustnicy Thrustmaster TCA i wysyła do gry naciśnięcia klawiszy, tak jak fizyczna klawiatura.</p>
+    <p class="focus"><b>Na co patrzeć:</b> logika w mapping.py jest oddzielona od pygame i WinAPI, więc da się ją testować bez sprzętu i bez gry.</p>
+    <ul class="chips"><li>Python 1 374 linie</li><li>unittest 30 testów</li><li>pygame</li><li>WinAPI SendInput</li><li>Tkinter</li><li>ViGEmBus (pad Xbox)</li></ul>
+  </div>
+
+  <div class="cols">
+    <div class="prose">
+      <h2 class="h-sm">Jak działa</h2>
+      <ol class="steps">
+        <li>Odczyt położenia dźwigni i przycisków (pygame).</li>
+        <li>Kalibracja: surowa wartość osi zamienia się na zakres od 0 do 1.</li>
+        <li>Mapowanie. Tryb skokowy liczy pozycje nastawnika i wysyła jedno naciśnięcie na każdą pozycję różnicy. Tryb strefowy trzyma klawisz, dopóki dźwignia jest w strefie.</li>
+        <li>Wysłanie klawiszy do gry przez <code>SendInput</code>.</li>
+      </ol>
+      <p>Logika mapowania jest w osobnym pliku <code>mapping.py</code> bez zależności od sprzętu i systemu. Dzięki temu testy działają na każdym komputerze, także bez przepustnicy i bez gry.</p>
+    </div>
+    <div class="prose">
+      <h2 class="h-sm">Co jeszcze jest w programie</h2>
+      <p>Dwa gotowe profile: lokomotywy bez hamulca elektrodynamicznego (EU07, EP07, ET22) i z nim (Elf, Dragon 2, Traxx). Kreator kalibracji osi. Tryb <code>--dry-run</code>, który wypisuje klawisze zamiast je wysyłać. Okno z wyborem profilu i przyciskiem Start/Stop. Drugi tryb pracy wystawia w systemie wirtualnego pada Xbox 360. Instrukcja instalacji po polsku.</p>
+    </div>
+  </div>
+
+  <div class="demo" id="demo-tca">
+    <div class="demo-head">
+      <p class="eyebrow">Demo na żywo</p>
+      <p class="demo-note">Klasy <code>NotchedAxis</code> i <code>ZonesAxis</code> z <code>simrail_tca/mapping.py</code> przeniesione do JavaScript. Suwak zastępuje dźwignię.</p>
+    </div>
+    <div class="demo-body">
+      <div class="tca-grid">
+        <div class="lever">
+          <label for="tca-profile">Dźwignia 1: nastawnik jazdy (tryb skokowy)</label>
+          <select id="tca-profile">
+            <option value="44|0.2">EU07: 44 pozycje, histereza 0,2 (profil bez-ed.json)</option>
+            <option value="5|0.15">Jak w testach: 5 pozycji, histereza 0,15</option>
+          </select>
+          <input type="range" id="tca-l1" min="0" max="1" step="0.001" value="0" aria-label="Położenie dźwigni 1">
+          <div class="ladder" id="tca-ladder" aria-hidden="true"></div>
+          <dl class="readout">
+            <dt>Dźwignia</dt><dd id="tca-val">0,000</dd>
+            <dt>Pozycja w grze</dt><dd id="tca-notch">0 / 43</dd>
+            <dt>Wysłane klawisze</dt><dd id="tca-count">0</dd>
+          </dl>
+          <div class="keys" id="tca-keys" aria-label="Ostatnie wysłane klawisze"></div>
+          <div class="btnrow">
+            <button type="button" class="btn" id="tca-jitter" aria-pressed="false">Symuluj drgania dźwigni na granicy pozycji</button>
+          </div>
+          <div class="cmp" id="tca-cmp" hidden>
+            <div><b id="tca-c-h">0</b><span>naciśnięć z histerezą (jak w programie)</span></div>
+            <div><b id="tca-c-0">0</b><span>naciśnięć bez histerezy</span></div>
+          </div>
+        </div>
+        <div class="lever">
+          <label for="tca-l2">Dźwignia 2: kran hamulca (tryb strefowy)</label>
+          <input type="range" id="tca-l2" min="0" max="1" step="0.001" value="0.5" aria-label="Położenie dźwigni 2">
+          <div class="zones" id="tca-zones" aria-hidden="true"><span>Num 9</span><span>martwa</span><span>Num 3</span><b id="tca-zmark"></b></div>
+          <dl class="readout">
+            <dt>Dźwignia</dt><dd id="tca-val2">0,500</dd>
+            <dt>Trzymany klawisz</dt><dd class="held" id="tca-held">brak</dd>
+          </dl>
+          <p class="demo-note">Na krawędzi strefy działa margines 0,02. Dźwignia tuż za granicą nie przełącza klawisza tam i z powrotem.</p>
+        </div>
+      </div>
+      <div>
+        <div class="btnrow">
+          <span class="btnrow-label">Przypadki z <code>tests/test_mapping.py</code> odtworzone na tym demie. Kolumna „oczekiwane” to asercje z testu.</span>
+          <button type="button" class="btn" data-tcatest="sweep">test_full_sweep_up</button>
+          <button type="button" class="btn" data-tcatest="jitter">test_hysteresis_blocks_jitter</button>
+          <button type="button" class="btn" data-tcatest="resync">test_resync</button>
+          <button type="button" class="btn" data-tcatest="edge">test_edge_hysteresis</button>
+        </div>
+        <div class="tscroll" id="tca-testout" hidden>
+          <table class="t"><thead><tr><th>Krok</th><th>Wejście</th><th>Oczekiwane</th><th>Wynik na żywo</th><th>Status</th></tr></thead><tbody id="tca-testbody"></tbody></table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="evidence">
+    <h2 class="h-sm">Testy w repozytorium</h2>
+    <ul>
+      <li><b>test_mapping.py</b>, 19 testów: kalibracja, tryb skokowy z histerezą, strefy, przyciski.</li>
+      <li><b>test_xboxmap.py</b>, 8 testów: zakresy drążków i spustów, martwa strefa, odrzucanie błędnych celów.</li>
+      <li><b>test_config.py</b>, 3 testy: wczytanie dołączonych profili, brak pliku, błędna nazwa klawisza.</li>
+    </ul>
+    <details class="log">
+      <summary>Wynik uruchomienia <span class="badge pass">30/30 OK</span> <span class="demo-note">10.11.2026, Python 3.13</span></summary>
+      <div class="logbody"><pre>$ python -m unittest discover -s tests -v
+..............................
+----------------------------------------------------------------------
+Ran 30 tests in 0.009s
+
+<span class="p">OK</span></pre></div>
+    </details>
+  </div>
+</article>
+
+
+<section class="sec" aria-labelledby="h-prof">
+  <h2 id="h-prof">Profile pojazdów</h2>
+  <div class="tscroll"><table class="t">
+    <thead><tr><th>Profil</th><th>Pojazdy</th><th>Układ dźwigni</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">bez-ed.json</td><td>EU07, EP07, EP08, ET22, ET41</td><td>Dźwignia 1 to nastawnik skokowy z 44 pozycjami, dźwignia 2 to kran hamulca</td></tr>
+      <tr><td class="mono">z-ed.json</td><td>Elf, Dragon 2, Traxx</td><td>Dźwignia 1 to zadajnik jazdy i hamowania elektrodynamicznego, dźwignia 2 to hamulec pneumatyczny</td></tr>
+      <tr><td class="mono">xbox.json</td><td>dowolna gra z obsługą pada</td><td>Osie przepustnicy jako drążki i spusty wirtualnego pada Xbox 360</td></tr>
+    </tbody>
+  </table></div>
+  <p class="intro">Przyciski mają cztery rodzaje działania: pojedyncze naciśnięcie, przytrzymanie (syrena), przełącznik dwustanowy (pantograf) i ponowne zgranie licznika pozycji z grą.</p>
+</section>
+<p class="pager"><a href="../../projekty/dyzurny-ruchu/index.html">← Dyżurny Ruchu</a><a href="../../projekty/shield-adv/index.html">Shield ADV →</a></p>
+</main>
+<footer class="site-foot"><div class="wrap">
+  <nav aria-label="Stopka"><a href="../../index.html">Wróć do wyboru roli</a><a href="../../projekty/index.html">Wszystkie projekty</a><a href="../../pytania/index.html">Pytania i kontakt</a><a href="https://github.com/LukaszTM" target="_blank" rel="noopener">GitHub</a></nav>
+  <p>Projekty własne i dowody techniczne · listopad 2026 · bez fikcyjnych wyników AI. Dema to wierne przeniesienia fragmentów logiki do JavaScript albo dane z prawdziwych nagrań, a nie pełne programy.</p>
+</div></footer>
+<script src="../../assets/js/common.js"></script>
+<script src="../../assets/js/tca.js"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PorządMiś · Łukasz Kap</title>
+<meta name="description" content="Domowy organizer dla rodziny: zakupy, obowiązki, kalendarz, notatki i budżet z rolami pilnowanymi po stronie serwera.">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#tresc">Przejdź do treści</a>
+<header class="site"><div class="wrap nav">
+  <a class="brand" href="../../index.html"><span>ŁK/</span> Łukasz Kap</a>
+  <nav aria-label="Główna"><ul><li><a href="../../index.html">Start</a></li><li><a href="../../mobile/index.html">Mobile</a></li><li><a href="../../systems/index.html">Systems</a></li><li><a href="../../agentic/index.html">Agentic</a></li><li><a href="../../projekty/index.html" aria-current="page">Projekty</a></li><li><a href="../../pytania/index.html">Pytania i kontakt</a></li><li><a href="https://github.com/LukaszTM" target="_blank" rel="noopener">GitHub</a></li></ul></nav>
+</div></header>
+<main id="tresc" class="wrap">
+<p class="crumbs"><a href="../../index.html">Start</a> / <a href="../../projekty/index.html">Projekty</a> / PorządMiś</p>
+<article class="proj" aria-labelledby="h-porzadmis">
+  <div class="proj-head">
+    <div class="proj-kind">
+      <p class="eyebrow">Aplikacja na Androida · Flutter · Firebase</p>
+      <a href="https://github.com/LukaszTM/PorzadMis" target="_blank" rel="noopener">Repozytorium</a>
+    </div>
+    <h1 id="h-porzadmis">PorządMiś: domowy organizer dla całej rodziny</h1>
+    <p class="proj-sub">Wspólna lista zakupów, obowiązki, kalendarz, notatki i budżet. Wpis jednej osoby od razu widzą pozostali domownicy, a aplikacja działa też bez sieci.</p>
+    <p class="focus"><b>Na co patrzeć:</b> uprawnienia egzekwowane po stronie serwera, zasady projektu spisane dla agenta i test allow oraz deny dla każdej reguły dostępu.</p>
+    <ul class="chips"><li>Dart 13 433 linie</li><li>Flutter + Riverpod</li><li>Firestore + Cloud Functions (TypeScript)</li><li>99 testów aplikacji</li><li>99 testów funkcji i reguł</li><li>widżety w Kotlinie</li><li>13 motywów</li></ul>
+  </div>
+
+  <div class="cols">
+    <div class="prose">
+      <h2 class="h-sm">Jak działa</h2>
+      <ol class="steps">
+        <li>Każdy domownik instaluje aplikację i dołącza do domu kodem QR albo kodem z sześciu znaków, ważnym 24 godziny.</li>
+        <li>Dane wspólne synchronizują się przez Firestore na żywo. Bez sieci zmiany czekają w telefonie i dosyłają się po powrocie połączenia.</li>
+        <li>Są dwie role: Administrator i Domownik. Różnią się uprawnieniami, a nie ekranami.</li>
+        <li>Uprawnień pilnuje serwer. Dane budżetu w ogóle nie trafiają na telefon Domownika, a wpis prywatny czyta tylko autor, nawet Administrator go nie zobaczy.</li>
+        <li>Członkostwo i role zmieniają wyłącznie funkcje w chmurze, które chronią ostatniego Administratora.</li>
+      </ol>
+      <p>Wszystkie siedem etapów planu jest zrealizowanych: konto i dom, zakupy, notatki i kalendarz, obowiązki cykliczne, budżet, powiadomienia, motywy i widżety ekranu głównego.</p>
+    </div>
+    <div class="gal phones2">
+    <figure><button type="button" class="zoom" data-zoom="../../assets/img/pm-pulpit.webp" data-cap="Pulpit: plan dnia całego domu" aria-label="Powiększ zrzut: Pulpit: plan dnia całego domu"><img src="../../assets/img/pm-pulpit.webp" width="560" height="1159" loading="lazy" alt="Pulpit aplikacji PorządMiś: powitanie z misiem, karta Dziś do zrobienia, najbliższe wydarzenie w kalendarzu i licznik sześciu produktów do kupienia."></button><figcaption>Pulpit: plan dnia całego domu</figcaption></figure>
+    <figure><button type="button" class="zoom" data-zoom="../../assets/img/pm-zakupy.webp" data-cap="Zakupy: jedna lista dla wszystkich domowników" aria-label="Powiększ zrzut: Zakupy: jedna lista dla wszystkich domowników"><img src="../../assets/img/pm-zakupy.webp" width="560" height="1159" loading="lazy" alt="Lista zakupów: sześć produktów w grupach Chemia i dom oraz Inne, przy każdym informacja, który domownik go dodał."></button><figcaption>Zakupy: jedna lista dla wszystkich domowników</figcaption></figure>
+    </div>
+  </div>
+
+  <div class="shotsec">
+    <h2 class="h-sm">Więcej ekranów z telefonu</h2>
+    <div class="gal phones4">
+    <figure><button type="button" class="zoom" data-zoom="../../assets/img/pm-kalendarz.webp" data-cap="Kalendarz: wydarzenia i obowiązki domu" aria-label="Powiększ zrzut: Kalendarz: wydarzenia i obowiązki domu"><img src="../../assets/img/pm-kalendarz.webp" width="560" height="1159" loading="lazy" alt="Kalendarz miesiąca z kropkami oznaczającymi wydarzenia i obowiązki oraz przełącznikiem Miesiąc i Tydzień."></button><figcaption>Kalendarz: wydarzenia i obowiązki domu</figcaption></figure>
+    <figure><button type="button" class="zoom" data-zoom="../../assets/img/pm-wiecej.webp" data-cap="Więcej: budżet oznaczony „tylko Administrator”" aria-label="Powiększ zrzut: Więcej: budżet oznaczony „tylko Administrator”"><img src="../../assets/img/pm-wiecej.webp" width="560" height="1159" loading="lazy" alt="Ekran Więcej: Notatki, Budżet z kłódką i napisem tylko Administrator, Domownicy, Zaproś domownika, Ustawienia."></button><figcaption>Więcej: budżet oznaczony „tylko Administrator”</figcaption></figure>
+    <figure><button type="button" class="zoom" data-zoom="../../assets/img/pm-budzet.webp" data-cap="Budżet: ekran dostępny tylko dla Administratora" aria-label="Powiększ zrzut: Budżet: ekran dostępny tylko dla Administratora"><img src="../../assets/img/pm-budzet.webp" width="560" height="1159" loading="lazy" alt="Ekran Budżet dla Administratora: wykres kołowy wydatków miesiąca, kategoria Jedzenie, przycisk Ustaw plan i lista wydatków."></button><figcaption>Budżet: ekran dostępny tylko dla Administratora</figcaption></figure>
+    <figure><button type="button" class="zoom" data-zoom="../../assets/img/pm-widzety.webp" data-cap="Widżety ekranu głównego, napisane w Kotlinie" aria-label="Powiększ zrzut: Widżety ekranu głównego, napisane w Kotlinie"><img src="../../assets/img/pm-widzety.webp" width="560" height="1218" loading="lazy" alt="Trzy widżety PorządMisia: najbliższe wydarzenie, zadania na dziś i lista zakupów z pięcioma pozycjami do odhaczenia."></button><figcaption>Widżety ekranu głównego, napisane w Kotlinie</figcaption></figure>
+    </div>
+    <p class="demo-note">Zrzuty z telefonu, 11.11.2026, motyw nocny. Prywatne wpisy (nazwa wydarzenia, imię domownika, kwoty i nazwa sklepu) zastąpiono przykładowymi. Widżety pokazane bez tapety pulpitu. Kliknij zrzut, żeby go powiększyć.</p>
+  </div>
+
+  <div class="demo" id="demo-pm">
+    <div class="demo-head">
+      <p class="eyebrow">Demo na żywo</p>
+      <p class="demo-note">Warunki z pliku <code>firestore.rules</code> i funkcji z <code>functions/src/households.ts</code> przeniesione do JavaScript. Komunikaty błędów pochodzą z kodu.</p>
+    </div>
+    <div class="demo-body">
+      <div class="sub">
+        <h2 class="h-sm">Kto co może</h2>
+        <p class="demo-note">Kliknij dowolną komórkę, żeby zobaczyć regułę, która o niej decyduje, i test, który ją sprawdza.</p>
+        <div class="tscroll"><table class="t" id="pm-matrix">
+          <thead><tr><th>Operacja</th><th>Administrator</th><th>Domownik (autor wpisu)</th><th>Inny domownik</th><th>Osoba spoza domu</th></tr></thead>
+          <tbody id="pm-rows"></tbody>
+        </table></div>
+        <div class="rulebox" id="pm-rule" aria-live="polite"></div>
+      </div>
+      <div class="sub">
+        <h2 class="h-sm">Domownicy i role</h2>
+        <p class="demo-note">Spróbuj odebrać rolę jedynemu Administratorowi albo wyjść z domu jako ostatnia osoba.</p>
+        <div class="house">
+          <div class="house-who">
+            <label for="pm-actor">Działasz jako:</label>
+            <select id="pm-actor"></select>
+            <button type="button" class="btn btn-sm" id="pm-leave">Opuść dom</button>
+            <button type="button" class="btn btn-sm" id="pm-reset">Od nowa</button>
+          </div>
+          <ul class="members" id="pm-members"></ul>
+          <div class="alert" id="pm-out" aria-live="polite">Dom „Nasz dom”: jedna Administratorka i dwoje Domowników.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="evidence">
+    <h2 class="h-sm">Testy w repozytorium</h2>
+    <ul>
+      <li><b>Reguły dostępu</b>: każda reguła ma test „allow” i „deny” uruchamiany na emulatorze Firestore. Przykłady nazw testów: „deny: Administrator ani nikt inny nie czyta cudzych prywatnych”, „deny: nawet admin nie zmienia ról z klienta”, „ostatniego admina nie da się zdegradować”.</li>
+      <li><b>Funkcje w chmurze</b>: zakładanie domu, zaproszenia (jednorazowe, wygasłe, unieważnione), role, opuszczanie domu, generowanie wystąpień obowiązków na 90 dni.</li>
+      <li><b>Aplikacja</b>: modele budżetu, obowiązków, wydarzeń i zakupów, kontrast motywów, test pilnujący, że w kodzie interfejsu nie ma kolorów wpisanych na sztywno.</li>
+    </ul>
+    <p class="demo-note">Polecenia: <code>flutter test</code> oraz <code>cd functions &amp;&amp; npm test</code> (uruchamia emulator Firestore).</p>
+  </div>
+</article>
+
+
+<section class="sec" aria-labelledby="h-role">
+  <h2 id="h-role">Role i uprawnienia z planu</h2>
+  <p class="intro">Administrator widzi i edytuje wszystko. Domownik nie widzi budżetu i edytuje to, co jest wspólne z natury: zakupy, notatki, kalendarz.</p>
+  <div class="tscroll"><table class="t">
+    <thead><tr><th>Obszar</th><th>Administrator</th><th>Domownik</th></tr></thead>
+    <tbody>
+      <tr><td>Budżet</td><td>widzi, dodaje, edytuje, usuwa</td><td>nie widzi modułu w ogóle</td></tr>
+      <tr><td>Plan obowiązków</td><td>tworzy, przypisuje, edytuje, usuwa</td><td>widzi swoje i cudze, odhacza tylko swoje</td></tr>
+      <tr><td>Lista zakupów</td><td>pełna edycja</td><td>dodaje, edytuje, odhacza, usuwa pozycje</td></tr>
+      <tr><td>Notatnik</td><td>pełna edycja notatek wspólnych i własnych</td><td>dodaje i edytuje własne, cudze wspólne tylko czyta</td></tr>
+      <tr><td>Kalendarz</td><td>pełna edycja</td><td>dodaje wydarzenia, edytuje tylko swoje</td></tr>
+      <tr><td>Domownicy</td><td>zaprasza kodem QR, nadaje role, usuwa z domu</td><td>widzi listę domowników</td></tr>
+    </tbody>
+  </table></div>
+</section>
+<section class="sec" aria-labelledby="h-mod">
+  <h2 id="h-mod">Budowa aplikacji</h2>
+  <p class="intro">Każdy moduł ma własny katalog <code>lib/features/&lt;moduł&gt;</code> z warstwami <code>data</code>, <code>domain</code> i <code>ui</code>. Kwoty są w groszach jako liczby całkowite, czas w UTC, a wszystkie teksty interfejsu w jednym pliku tłumaczeń.</p>
+  <ul class="chips"><li>auth</li><li>household</li><li>invites</li><li>members</li><li>shopping</li><li>notes</li><li>calendar</li><li>chores</li><li>budget</li><li>notifications</li><li>settings</li><li>onboarding</li><li>widgets</li></ul>
+  <figure>
+    <img src="../../assets/img/pm-motywy.webp" width="1100" height="821" loading="lazy" alt="Podgląd trzynastu motywów kolorystycznych aplikacji PorządMiś na ekranie Dziś.">
+    <figcaption>Podgląd 13 motywów z repozytorium. Motywy to pliki JSON z tokenami kolorów, a osobny test sprawdza ich kontrast.</figcaption>
+  </figure>
+</section>
+<p class="pager"><a href="../../projekty/boxbox-academy/index.html">← BoxBox Academy</a><a href="../../projekty/dyzurny-ruchu/index.html">Dyżurny Ruchu →</a></p>
+</main>
+<footer class="site-foot"><div class="wrap">
+  <nav aria-label="Stopka"><a href="../../index.html">Wróć do wyboru roli</a><a href="../../projekty/index.html">Wszystkie projekty</a><a href="../../pytania/index.html">Pytania i kontakt</a><a href="https://github.com/LukaszTM" target="_blank" rel="noopener">GitHub</a></nav>
+  <p>Projekty własne i dowody techniczne · listopad 2026 · bez fikcyjnych wyników AI. Dema to wierne przeniesienia fragmentów logiki do JavaScript albo dane z prawdziwych nagrań, a nie pełne programy.</p>
+</div></footer>
+<script src="../../assets/js/common.js"></script>
+<script src="../../assets/js/porzadmis.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mr.Python · Łukasz Kap</title>
+<meta name="description" content="Nauka Pythona małymi krokami: 14 lekcji i 72 zadania z sercami, punktami i serią dni.">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#tresc">Przejdź do treści</a>
+<header class="site"><div class="wrap nav">
+  <a class="brand" href="../../index.html"><span>ŁK/</span> Łukasz Kap</a>
+  <nav aria-label="Główna"><ul><li><a href="../../index.html">Start</a></li><li><a href="../../mobile/index.html">Mobile</a></li><li><a href="../../systems/index.html">Systems</a></li><li><a href="../../agentic/index.html">Agentic</a></li><li><a href="../../projekty/index.html" aria-current="page">Projekty</a></li><li><a href="../../pytania/index.html">Pytania i kontakt</a></li><li><a href="https://github.com/LukaszTM" target="_blank" rel="noopener">GitHub</a></li></ul></nav>
+</div></header>
+<main id="tresc" class="wrap">
+<p class="crumbs"><a href="../../index.html">Start</a> / <a href="../../projekty/index.html">Projekty</a> / Mr.Python</p>
+<article class="proj" aria-labelledby="h-mrpython">
+  <div class="proj-head">
+    <div class="proj-kind">
+      <p class="eyebrow">Aplikacja na Androida · Kotlin · Jetpack Compose</p>
+      <a href="https://github.com/LukaszTM/Mr.Python" target="_blank" rel="noopener">Repozytorium</a>
+    </div>
+    <h1 id="h-mrpython">Mr.Python: nauka Pythona małymi krokami</h1>
+    <p class="proj-sub">Ścieżka z 6 części, 14 lekcji i 72 zadań w czterech typach. Serca, punkty XP, seria dni i cel dzienny utrzymują rytm nauki.</p>
+    <p class="focus"><b>Na co patrzeć:</b> czysta warstwa domain bez zależności od Androida, StateFlow w ViewModelu i testy uruchamiane w GitHub Actions.</p>
+    <ul class="chips"><li>Kotlin 2 506 linii</li><li>Jetpack Compose, Material 3</li><li>ViewModel + StateFlow</li><li>20 testów jednostkowych</li><li>GitHub Actions</li></ul>
+  </div>
+
+  <div class="cols">
+    <div class="prose">
+      <h2 class="h-sm">Jak jest zbudowana</h2>
+      <p>Kod jest podzielony na trzy warstwy. W <code>domain</code> jest czysta logika: sprawdzanie odpowiedzi, serca, punkty, seria dni, przebieg lekcji. W <code>data</code> jest treść kursu i zapis postępu. W <code>ui</code> są ekrany Compose.</p>
+      <p>Logika nie zależy od Androida, więc testy działają bez emulatora. Osobny test sprawdza treść kursu: czy identyfikatory zadań są unikalne i czy każda poprawna odpowiedź przechodzi przez własny mechanizm sprawdzania.</p>
+    </div>
+    <div class="prose">
+      <h2 class="h-sm">Zasady z kodu</h2>
+      <p>Pięć serc. Błąd kosztuje jedno, a serce odnawia się co 20 minut. Źle rozwiązane zadanie wraca na koniec lekcji. Lekcja daje 10 XP i 5 więcej za przejście bez błędu.</p>
+      <p>Wynik programu jest porównywany linia po linii. Spacje na brzegach nie mają znaczenia, wielkość liter ma, bo Python wypisuje <code>True</code>, a nie <code>true</code>.</p>
+    </div>
+  </div>
+
+  <div class="demo" id="demo-mp">
+    <div class="demo-head">
+      <p class="eyebrow">Demo na żywo</p>
+      <p class="demo-note">Cztery zadania z pliku <code>CourseContent.kt</code>. Sprawdzanie odpowiedzi i serca działają według <code>AnswerChecker</code> i <code>Rules</code> z aplikacji.</p>
+    </div>
+    <div class="demo-body">
+      <form class="lesson" id="mp-form">
+        <div class="lesson-top"><span id="mp-progress">Zadanie 1 z 4</span><span id="mp-hearts">serca: 5 z 5</span></div>
+        <label for="mp-in" id="mp-instr">Co wypisze ten program?</label>
+        <pre id="mp-code"></pre>
+        <textarea id="mp-in" rows="2" autocomplete="off" spellcheck="false" placeholder="Wpisz to, co pojawi się w konsoli"></textarea>
+        <div class="btnrow">
+          <button type="submit" class="btn btn-primary" id="mp-check">Sprawdź</button>
+          <button type="button" class="btn" id="mp-next" hidden>Dalej</button>
+          <button type="button" class="btn" id="mp-restart">Od nowa</button>
+        </div>
+        <div class="fb" id="mp-fb" hidden aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</article>
+
+<section class="sec" aria-labelledby="h-typy">
+  <h2 id="h-typy">Cztery typy zadań</h2>
+  <div class="gates">
+    <div><b>Wybór odpowiedzi</b><span>Jedna poprawna z kilku możliwych.</span></div>
+    <div><b>Luka w kodzie</b><span>Uzupełnienie brakującego fragmentu programu.</span></div>
+    <div><b>Układanie z kafelków</b><span>Kod składany z banku słów, z elementami mylącymi.</span></div>
+    <div><b>Co wypisze ten program?</b><span>Wpisanie wyniku z konsoli. Ten typ jest w demie powyżej.</span></div>
+  </div>
+  <p class="intro">Cała treść kursu jest w jednym pliku. Nowe zadanie to jedno wywołanie funkcji pomocniczej, a test sprawdza, czy identyfikatory są unikalne i odpowiedzi poprawne.</p>
+</section>
+<p class="pager"><a href="../../projekty/shield-adv/index.html">← Shield ADV</a><a href="../../projekty/moj-lan/index.html">Mój Łan →</a></p>
+</main>
+<footer class="site-foot"><div class="wrap">
+  <nav aria-label="Stopka"><a href="../../index.html">Wróć do wyboru roli</a><a href="../../projekty/index.html">Wszystkie projekty</a><a href="../../pytania/index.html">Pytania i kontakt</a><a href="https://github.com/LukaszTM" target="_blank" rel="noopener">GitHub</a></nav>
+  <p>Projekty własne i dowody techniczne · listopad 2026 · bez fikcyjnych wyników AI. Dema to wierne przeniesienia fragmentów logiki do JavaScript albo dane z prawdziwych nagrań, a nie pełne programy.</p>
+</div></footer>
+<script src="../../assets/js/common.js"></script>
+<script src="../../assets/js/mrpython.js"></script>
+</body>
+</html>

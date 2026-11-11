@@ -2,14 +2,87 @@
 <html lang="pl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Łukasz – portfolio</title>
-<!-- Stary adres podstrony: przekierowanie do nowego portfolio z wybraną rolą. -->
-<meta http-equiv="refresh" content="0; url=../?rola=python">
-<link rel="canonical" href="../?rola=python">
-<script>location.replace("../?rola=python");</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Systems Engineering · Łukasz Kap</title>
+<meta name="description" content="Python, diagnostyka, komunikacja sieciowa i architektura testowalnych modułów. BoxBox Academy pokazuje system pracujący na danych w czasie rzeczywistym, a PorządMiś bezpieczne reguły dostępu do danych.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../assets/css/site.css">
 </head>
 <body>
-<p><a href="../?rola=python">Przejdź do portfolio</a></p>
+<a class="skip" href="#tresc">Przejdź do treści</a>
+<header class="site"><div class="wrap nav">
+  <a class="brand" href="../index.html"><span>ŁK/</span> Łukasz Kap</a>
+  <nav aria-label="Główna"><ul><li><a href="../index.html">Start</a></li><li><a href="../mobile/index.html">Mobile</a></li><li><a href="../systems/index.html" aria-current="page">Systems</a></li><li><a href="../agentic/index.html">Agentic</a></li><li><a href="../projekty/index.html">Projekty</a></li><li><a href="../pytania/index.html">Pytania i kontakt</a></li><li><a href="https://github.com/LukaszTM" target="_blank" rel="noopener">GitHub</a></li></ul></nav>
+</div></header>
+<main id="tresc" class="wrap">
+
+<p class="crumbs"><a href="../index.html">Start</a> / Systems Engineering</p>
+<section class="hero" style="padding-top:14px">
+  <p class="eyebrow">Portfolio 2026 · Systems Engineering</p>
+  <h1>Systemy, których działanie da się sprawdzić</h1>
+  <p class="lead">Python, diagnostyka, komunikacja sieciowa i architektura testowalnych modułów. BoxBox Academy pokazuje system pracujący na danych w czasie rzeczywistym, a PorządMiś bezpieczne reguły dostępu do danych.</p>
+  <p class="ident">Łukasz Kap · okolice Radzynia Podlaskiego · GitHub: LukaszTM</p>
+  <ul class="facts"><li><b>14 920</b><span>linii Pythona w BoxBox Academy</span></li><li><b>334 z 335</b><span>testów pytest przechodzi</span></li><li><b>287 129</b><span>pakietów z nagrania odczytanych bez błędu</span></li></ul>
+</section>
+<section class="sec" id="projekty" aria-labelledby="h-proj">
+  <h2 id="h-proj">Projekty w tej roli</h2>
+  <div class="cards"><article class="card"><p class="eyebrow">Aplikacja na PC · Python</p><h3><a href="../projekty/boxbox-academy/index.html">BoxBox Academy</a></h3><p>Mechanik na radiu do F1 25: czyta telemetrię UDP w czasie rzeczywistym i mówi, co poprawić w każdym zakręcie.</p><ul class="pts"><li>14 920 linii Pythona w 99 modułach</li><li>334 z 335 testów przechodzi</li><li>zamknięta beta 0.7.2 z instalatorem</li></ul><a class="more" href="../projekty/boxbox-academy/index.html">Demo: prawdziwe okrążenia z Monzy i głos mechanika</a></article><article class="card"><p class="eyebrow">Narzędzie dla Windows · Python</p><h3><a href="../projekty/thrustmaster-simrail/index.html">Thrustmaster → SimRail</a></h3><p>Przepustnica lotnicza steruje lokomotywą: program zamienia położenie dźwigni na naciśnięcia klawiszy w symulatorze.</p><ul class="pts"><li>1 374 linie Pythona</li><li>30 z 30 testów jednostkowych</li><li>tryb klawiatury i wirtualny pad Xbox</li></ul><a class="more" href="../projekty/thrustmaster-simrail/index.html">Demo: dźwignia z histerezą i przypadki z testów</a></article><article class="card"><p class="eyebrow">Gra symulacyjna · Godot 4 · GDScript</p><h3><a href="../projekty/dyzurny-ruchu/index.html">Dyżurny Ruchu</a></h3><p>Symulator nastawni kolejowej: nastawianie przebiegów, zapowiadanie pociągów i usterki na stacji Warszawa Wschodnia.</p><ul class="pts"><li>5 942 linie GDScript</li><li>test dymny 22 z 22</li><li>automatyczny dyżurny wykrywa zakleszczenia</li></ul><a class="more" href="../projekty/dyzurny-ruchu/index.html">Demo: działający pulpit nastawczy</a></article></div>
+  <p class="demo-note">Zobacz też: <a href="../projekty/moj-lan/index.html">Mój Łan</a> oraz <a href="../projekty/index.html">wszystkie projekty</a>.</p>
+</section>
+
+<section class="sec" aria-labelledby="h-q">
+  <h2 id="h-q">BoxBox Academy: od pakietu do decyzji</h2>
+  <p class="intro">To nie jest jednorazowy skrypt. Aplikacja łączy parser binarnej telemetrii, silnik reguł, bazę danych, interfejs i proces wydawniczy.</p>
+  <ol class="flow" style="grid-template-columns:repeat(5,minmax(0,1fr))">
+    <li><b>UDP</b>Odbiór telemetrii 60 razy na sekundę, port 20777.</li>
+    <li><b>Parser</b>Formaty pakietów 2025 i 2026 w jednym kodzie.</li>
+    <li><b>Silnik</b>Reguły, sektory i zakręty. Zwraca listę komunikatów.</li>
+    <li><b>Dane</b>SQLite i nagrania do odtworzenia bez gry.</li>
+    <li><b>Wydanie</b>Okno w PySide6 i instalator dla Windows.</li>
+  </ol>
+</section>
+<section class="sec" aria-labelledby="h-s">
+  <h2 id="h-s">Ochrona danych jest w backendzie</h2>
+  <p class="intro">PorządMiś rozróżnia role Administratora i Domownika. Dostęp do budżetu ograniczają reguły Firestore, a nie samo ukrycie zakładki w interfejsie. Zasady pracy zapisane w <code>CLAUDE.md</code> wymagają testu allow i deny po każdej zmianie uprawnień.</p>
+  <p><a href="../projekty/porzadmis/index.html">Zobacz tabelę uprawnień na stronie PorządMisia</a></p>
+</section>
+
+<section class="sec" id="ai" aria-labelledby="h-ai">
+  <h2 id="h-ai">Jak pracuję z agentami AI</h2>
+  <p class="intro">Używam asystentów do szybszego tworzenia i porządkowania kodu, ale odpowiedzialność za kryteria, przegląd, testy i rezultat pozostaje po mojej stronie.</p>
+  <ol class="flow">
+    <li><b>Kontekst</b><span>Plan etapów i zasady projektu są w repozytorium.</span></li>
+    <li><b>Zakres</b><span>Jedno zadanie, jeden etap planu.</span></li>
+    <li><b>Agent</b><span>Kod powstaje w ramach zasad z <code>CLAUDE.md</code>.</span></li>
+    <li><b>Przegląd</b><span>Zmiana wchodzi przez pull request.</span></li>
+    <li><b>Testy</b><span>Analiza i testy muszą przejść przed końcem zadania.</span></li>
+    <li><b>Iteracja</b><span>Błąd z sesji wraca jako zadanie z testem regresji.</span></li>
+  </ol>
+  <p class="demo-note">Nie podaję nieudokumentowanej liczby commitów generowanych przez AI ani procentów oszczędności czasu. Pokazuję mechanizmy pracy, które można sprawdzić w repozytoriach.</p>
+</section>
+
+<section class="sec" id="dowody" aria-labelledby="h-dowody">
+  <h2 id="h-dowody">Dowody zamiast ogólników</h2>
+  <p class="intro">Każde twierdzenie ma odnośnik do rzeczywistego pliku lub publicznego wydania.</p>
+  <ul class="proofs">
+    <li><a href="https://github.com/LukaszTM/PorzadMis/blob/main/CLAUDE.md" target="_blank" rel="noopener">PorzadMis/CLAUDE.md</a><span>Zasady pracy dla agenta: jeden etap naraz, test allow i deny po zmianie reguł, kolory tylko przez tokeny motywu.</span></li>
+    <li><a href="https://github.com/LukaszTM/PorzadMis/blob/main/firestore.rules" target="_blank" rel="noopener">PorzadMis/firestore.rules</a><span>Reguły dostępu: budżet tylko dla Administratora, wpisy prywatne tylko dla autora.</span></li>
+    <li><a href="https://github.com/LukaszTM/PorzadMis/blob/main/functions/test/budget_rules.test.ts" target="_blank" rel="noopener">functions/test/budget_rules.test.ts</a><span>Testy reguł budżetu na emulatorze Firestore, scenariusze dozwolone i odrzucone.</span></li>
+    <li><a href="https://github.com/LukaszTM/PorzadMis/blob/main/test/core/no_color_literals_test.dart" target="_blank" rel="noopener">test/core/no_color_literals_test.dart</a><span>Test jakości: wykrywa kolory wpisane na sztywno poza systemem motywów.</span></li>
+    <li><a href="https://github.com/LukaszTM/Agro_Asystent/blob/main/test/architektura_test.dart" target="_blank" rel="noopener">Agro_Asystent/test/architektura_test.dart</a><span>Test architektury aplikacji Mój Łan: logika nie importuje ekranów, progi z przepisów nie są wpisane w kod.</span></li>
+    <li><a href="https://github.com/LukaszTM/Agro_Asystent/blob/main/docs/raporty/etap2-podsumowanie.md" target="_blank" rel="noopener">Agro_Asystent/docs/raporty/etap2-podsumowanie.md</a><span>Raport z etapu: liczby, defekty znalezione przez testy i lista rzeczy, których aplikacja nie policzy.</span></li>
+    <li><a href="https://github.com/LukaszTM/Agro_Asystent/releases/tag/apk-test" target="_blank" rel="noopener">Mój Łan, wydanie testowe APK</a><span>Plik na telefon budowany przez GitHub Actions po każdej zmianie kodu. Obok jest wydanie programu na Windows.</span></li>
+    <li><a href="https://github.com/LukaszTM/Mr.Python/blob/main/.github/workflows/android.yml" target="_blank" rel="noopener">Mr.Python/.github/workflows/android.yml</a><span>GitHub Actions: testy jednostkowe i budowanie APK po każdej zmianie.</span></li>
+    <li><a href="https://github.com/LukaszTM/BoxBox-Academy-Pobieranie/releases/tag/v0.7.1-beta" target="_blank" rel="noopener">BoxBox Academy, wydanie beta</a><span>Publiczny instalator dla Windows. Kod źródłowy jest prywatny, szczegóły techniczne omawiam podczas rozmowy.</span></li>
+  </ul>
+</section>
+<p class="pager"><a href="../index.html">← Wszystkie role</a><a href="../pytania/index.html">Pytania i kontakt →</a></p>
+</main>
+<footer class="site-foot"><div class="wrap">
+  <nav aria-label="Stopka"><a href="../index.html">Wróć do wyboru roli</a><a href="../projekty/index.html">Wszystkie projekty</a><a href="../pytania/index.html">Pytania i kontakt</a><a href="https://github.com/LukaszTM" target="_blank" rel="noopener">GitHub</a></nav>
+  <p>Projekty własne i dowody techniczne · listopad 2026 · bez fikcyjnych wyników AI. Dema to wierne przeniesienia fragmentów logiki do JavaScript albo dane z prawdziwych nagrań, a nie pełne programy.</p>
+</div></footer>
+<script src="../assets/js/common.js"></script>
 </body>
 </html>
