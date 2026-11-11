@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dyżurny Ruchu · Łukasz Kap</title>
+<meta name="description" content="Symulator nastawni kolejowej: nastawianie przebiegów, zapowiadanie pociągów i usterki na stacji Warszawa Wschodnia.">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#tresc">Przejdź do treści</a>
+<header class="site"><div class="wrap nav">
+  <a class="brand" href="../../index.html"><span>ŁK/</span> Łukasz Kap</a>
+  <nav aria-label="Główna"><ul><li><a href="../../index.html">Start</a></li><li><a href="../../mobile/index.html">Mobile</a></li><li><a href="../../systems/index.html">Systems</a></li><li><a href="../../agentic/index.html">Agentic</a></li><li><a href="../../projekty/index.html" aria-current="page">Projekty</a></li><li><a href="../../pytania/index.html">Pytania i kontakt</a></li><li><a href="https://github.com/LukaszTM" target="_blank" rel="noopener">GitHub</a></li></ul></nav>
+</div></header>
+<main id="tresc" class="wrap">
+<p class="crumbs"><a href="../../index.html">Start</a> / <a href="../../projekty/index.html">Projekty</a> / Dyżurny Ruchu</p>
+<article class="proj" aria-labelledby="h-dyzurny">
+  <div class="proj-head">
+    <div class="proj-kind">
+      <p class="eyebrow">Gra symulacyjna · Godot 4.3 · GDScript</p>
+      <a href="https://github.com/LukaszTM/Dyzurny-Ruchu-v0.0.1" target="_blank" rel="noopener">Repozytorium</a>
+    </div>
+    <h1 id="h-dyzurny">Dyżurny Ruchu: symulator nastawni LCS</h1>
+    <p class="proj-sub">Gracz prowadzi ruch pociągów na stacji Warszawa Wschodnia: nastawia przebiegi, zapowiada pociągi sąsiednim posterunkom i zgłasza usterki.</p>
+    <p class="focus"><b>Na co patrzeć:</b> silnik zależności oddzielony od interfejsu, test dymny całej rozgrywki i automatyczny gracz, który wykrywa zakleszczenia ruchu.</p>
+    <ul class="chips"><li>GDScript 5 942 linii</li><li>testy 837 linii</li><li>Python 705 linii (narzędzia)</li><li>JSON</li><li>wersja 0.4.0</li></ul>
+  </div>
+
+  <figure>
+    <img src="../../assets/img/dr-pulpit.webp" width="1280" height="720" alt="Pulpit nastawczy w grze: czarny ekran ze schematem torów Warszawy Wschodniej, zielona droga przebiegu od semafora C na tor 5, na dole tabele zdarzeń i alarmów.">
+    <figcaption>Pulpit w grze. Zielona linia to nastawiany przebieg C → N5. Zrzut wykonała sonda <code>ScreenshotProbe</code> z repozytorium, 10.11.2026.</figcaption>
+  </figure>
+
+  <div class="cols">
+    <div class="prose">
+      <h2 class="h-sm">Jak działa nastawianie przebiegu</h2>
+      <ol class="steps">
+        <li>Dyżurny wybiera polecenie, wskazuje początek i koniec drogi przebiegu.</li>
+        <li>Urządzenia szukają wolnej drogi po grafie torów (przeszukiwanie wszerz) i pomijają odcinki zajęte, zamknięte albo użyte w innym przebiegu.</li>
+        <li>Rozjazdy przestawiają się przez 3 sekundy. Cała droga jest w tym czasie zamknięta dla innych przebiegów.</li>
+        <li>Po utwierdzeniu semafor podaje sygnał zezwalający.</li>
+        <li>Za jadącym pociągiem odcinki zwalniają się po kolei.</li>
+      </ol>
+      <p>Stacja w grze ma 9 torów, 31 rozjazdów i 27 sygnalizatorów. Rozkład dobowy liczy 278 pozycji. Układ torowy i rozkład są w plikach JSON, więc nową stację dodaje się bez zmian w kodzie.</p>
+    </div>
+    <div class="shots">
+      <figure>
+        <img src="../../assets/img/dr-wykaz.webp" width="1100" height="618" loading="lazy" alt="Wykaz pociągów w grze: tabela z godzinami przyjazdu i odjazdu, numerami pociągów, kierunkami, torami i peronami.">
+        <figcaption>Wykaz pociągów w grze, wzorowany na Elektronicznym Dzienniku Ruchu.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="demo" id="demo-lcs">
+    <div class="demo-head">
+      <p class="eyebrow">Demo na żywo</p>
+      <p class="demo-note">Logika z pliku <code>scripts/core/interlocking.gd</code> przeniesiona do JavaScript. Posterunek poniżej jest fikcyjny i mały (2 tory, 2 rozjazdy), żeby zmieścił się na stronie.</p>
+    </div>
+    <div class="demo-body">
+      <div class="btnrow">
+        <span class="btnrow-label">Najszybciej: jeden przycisk pokazuje nastawienie, odmowę przebiegu wrogiego i krzyżowanie (około 12 sekund).</span>
+        <button type="button" class="btn btn-primary" id="lcs-auto">Pokaż w 12 sekund</button>
+        <button type="button" class="btn" id="lcs-s1">Wjazd A → N1</button>
+        <button type="button" class="btn" id="lcs-s2">Przebieg wrogi B → K1</button>
+        <button type="button" class="btn" id="lcs-s3">Krzyżowanie B → K2</button>
+        <button type="button" class="btn" id="lcs-reset">Wyczyść pulpit</button>
+      </div>
+      <div class="lcs">
+        <div class="lcs-bar" role="group" aria-label="Polecenia pulpitu">
+          <button type="button" data-cmd="PP" aria-pressed="true">PRZEBIEG POCIĄGOWY</button>
+          <button type="button" data-cmd="ZD" aria-pressed="false">ZD</button>
+          <button type="button" data-cmd="ZW" aria-pressed="false">ZW</button>
+          <span class="lcs-clock" id="lcs-clock">00:00:00</span>
+        </div>
+        <div class="lcs-scroll"><svg id="lcs-svg" viewBox="0 0 980 280" role="group" aria-label="Schemat posterunku: dwa tory, dwa rozjazdy, sześć sygnalizatorów"></svg></div>
+        <p class="lcs-msg" id="lcs-msg" aria-live="polite"></p>
+        <div class="lcs-log"><table>
+          <caption>ZDARZENIA</caption>
+          <thead><tr><th>Godzina</th><th>Rodzaj</th><th>Treść zapisu</th></tr></thead>
+          <tbody id="lcs-log"></tbody>
+        </table></div>
+      </div>
+      <p class="demo-note">Ręcznie: wybierz polecenie, kliknij sygnalizator początku (na przykład A), potem koniec (N1, N2 albo przycisk szlaku). ZD zwalnia przebieg, ZW przestawia rozjazd. Komunikaty odmowy pochodzą z kodu gry.</p>
+    </div>
+  </div>
+
+  <div class="evidence">
+    <h2 class="h-sm">Testy w repozytorium</h2>
+    <ul>
+      <li><b>SmokeTest</b>: 22 kontrole pełnej pętli gry, od zapowiedzenia pociągu po zapis dziennika EDR.</li>
+      <li><b>DispatchProbe</b>: automatyczny dyżurny gra przez 90 minut czasu symulacji i zgłasza każdy zablokowany pociąg.</li>
+      <li><b>ModeProbe, DockProbe, ScreenshotProbe</b>: przełączanie ekranów pod obciążeniem, tabele na pulpicie, zrzuty do kontroli wyglądu.</li>
+    </ul>
+    <details class="log">
+      <summary>Log testu dymnego <span class="badge pass">22/22 PASS</span> <span class="demo-note">uruchomiony 10.11.2026, Godot 4.3 bez okna</span></summary>
+      <div class="logbody"><pre>$ godot --headless --path . res://tests/SmokeTest.tscn --quit-after 60000
+<span class="p">[PASS]</span> Żądanie pozwolenia od sąsiedniego posterunku
+<span class="p">[PASS]</span> Danie pozwolenia — pociąg oczekuje przed semaforem wjazdowym C
+<span class="p">[PASS]</span> Nastawianie dwuprzyciskowe C → N5 (rozjazdy: 10+, 12-, 15+, 8+)
+<span class="p">[PASS]</span> Utwierdzenie przebiegu, rozjazdy w położeniu, sygnał zezwalający
+<span class="p">[PASS]</span> Wjazd na tor 5 zakończony
+<span class="p">[PASS]</span> Potwierdzenie przyjazdu „w całości”
+<span class="p">[PASS]</span> Odmowa nastawienia przebiegu wyjazdowego bez pozwolenia
+<span class="p">[PASS]</span> Otrzymano pozwolenie na wyprawienie pociągu
+<span class="p">[PASS]</span> Przebieg wyjazdowy N5 → szlak W-wa Rembertów
+<span class="p">[PASS]</span> Oznajmienie odjazdu sąsiedniemu posterunkowi
+<span class="p">[PASS]</span> Pociąg opuścił posterunek (zwolnienie przebiegu na szlaku)
+<span class="p">[PASS]</span> Przebieg manewrowy Tm1 → K8 (Grochów → tor 8)
+<span class="p">[PASS]</span> Skład podstawiony na tor 8
+<span class="p">[PASS]</span> Przebieg A → N1 nastawiony mimo usterki semafora
+<span class="p">[PASS]</span> Sygnał zastępczy (Sz) podany na uszkodzonym semaforze A
+<span class="p">[PASS]</span> Pociąg wjechał na sygnał zastępczy na tor 1
+<span class="p">[PASS]</span> Zgłoszenie usterki — rozpoczęto usuwanie (ETA 9 min)
+<span class="p">[PASS]</span> Usterka usunięta — urządzenia sprawne
+<span class="p">[PASS]</span> ZW — rozjazd nr 1 przestawiony z + na -
+<span class="p">[PASS]</span> ZD — zwolnienie drogi przebiegu (ZDM odrzucone dla przebiegu pociągowego)
+<span class="p">[PASS]</span> Kontrola wrogości przebiegów — drugi przebieg na tor 6 odrzucony
+<span class="p">[PASS]</span> EDR: 27 zapisów wszystkich rodzajów, rozkład: 280 pozycji, plik zapisany
+TEST DYMNY: OK</pre></div>
+    </details>
+  </div>
+</article>
+
+
+<section class="sec" aria-labelledby="h-pol">
+  <h2 id="h-pol">Polecenia pulpitu w grze</h2>
+  <div class="tscroll"><table class="t">
+    <thead><tr><th>Polecenie</th><th>Znaczenie</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">PRZEBIEG POCIĄGOWY / MANEWROWY</td><td>Nastawienie drogi przebiegu: początek, potem koniec</td></tr>
+      <tr><td class="mono">ZD, ZDM</td><td>Zwolnienie drogi przebiegu pociągowego albo manewrowego</td></tr>
+      <tr><td class="mono">ZW</td><td>Indywidualne przestawienie rozjazdu</td></tr>
+      <tr><td class="mono">ZWP</td><td>Zwolnienie awaryjne przebiegu z kontrolą czasu 180 s</td></tr>
+      <tr><td class="mono">STOP, OSTOP</td><td>Nakaz i odwołanie sygnału „Stój”</td></tr>
+      <tr><td class="mono">SZ, SZP</td><td>Sygnał zastępczy na uszkodzonym semaforze</td></tr>
+      <tr><td class="mono">WTAB, KTAB</td><td>Założenie i skasowanie tabliczki ostrzegawczej</td></tr>
+    </tbody>
+  </table></div>
+</section>
+<section class="sec" aria-labelledby="h-ekr">
+  <h2 id="h-ekr">Pozostałe ekrany</h2>
+  <p class="intro">Symulacja działa dalej w tle, gdy gracz przechodzi na inny ekran. Bez pozwolenia sąsiedniego posterunku urządzenia nie pozwolą wyprawić pociągu na szlak.</p>
+  <div class="shots2">
+    <figure><img src="../../assets/img/dr-lacznosc.webp" width="1100" height="619" loading="lazy" alt="Ekran łączności: rozmowy przychodzące od sąsiedniego posterunku, zapowiadanie pociągów i dziennik rozmów."><figcaption>Łączność: zapowiadanie pociągów i zgłaszanie usterek służbom.</figcaption></figure>
+    <figure><img src="../../assets/img/dr-edr.webp" width="1100" height="619" loading="lazy" alt="Elektroniczny Dziennik Ruchu z listą zapisów."><figcaption>Elektroniczny Dziennik Ruchu z filtrowaniem i zapisem do pliku.</figcaption></figure>
+  </div>
+  <p>Gra ma też tryb nauki z samouczkiem w 17 krokach oraz dwa tryby ruchu: realny rozkład jazdy w czasie rzeczywistym i ruch losowy z regulowanym natężeniem.</p>
+</section>
+<p class="pager"><a href="../../projekty/porzadmis/index.html">← PorządMiś</a><a href="../../projekty/thrustmaster-simrail/index.html">Thrustmaster → SimRail →</a></p>
+</main>
+<footer class="site-foot"><div class="wrap">
+  <nav aria-label="Stopka"><a href="../../index.html">Wróć do wyboru roli</a><a href="../../projekty/index.html">Wszystkie projekty</a><a href="../../pytania/index.html">Pytania i kontakt</a><a href="https://github.com/LukaszTM" target="_blank" rel="noopener">GitHub</a></nav>
+  <p>Projekty własne i dowody techniczne · listopad 2026 · bez fikcyjnych wyników AI. Dema to wierne przeniesienia fragmentów logiki do JavaScript albo dane z prawdziwych nagrań, a nie pełne programy.</p>
+</div></footer>
+<script src="../../assets/js/common.js"></script>
+<script src="../../assets/js/lcs.js"></script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BoxBox Academy · Łukasz Kap</title>
+<meta name="description" content="Mechanik na radiu do F1 25: czyta telemetrię UDP w czasie rzeczywistym i mówi, co poprawić w każdym zakręcie.">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#tresc">Przejdź do treści</a>
+<header class="site"><div class="wrap nav">
+  <a class="brand" href="../../index.html"><span>ŁK/</span> Łukasz Kap</a>
+  <nav aria-label="Główna"><ul><li><a href="../../index.html">Start</a></li><li><a href="../../mobile/index.html">Mobile</a></li><li><a href="../../systems/index.html">Systems</a></li><li><a href="../../agentic/index.html">Agentic</a></li><li><a href="../../projekty/index.html" aria-current="page">Projekty</a></li><li><a href="../../pytania/index.html">Pytania i kontakt</a></li><li><a href="https://github.com/LukaszTM" target="_blank" rel="noopener">GitHub</a></li></ul></nav>
+</div></header>
+<main id="tresc" class="wrap">
+<p class="crumbs"><a href="../../index.html">Start</a> / <a href="../../projekty/index.html">Projekty</a> / BoxBox Academy</p>
+<article class="proj" aria-labelledby="h-boxbox">
+  <div class="proj-head">
+    <div class="proj-kind">
+      <p class="eyebrow">Aplikacja na PC · Python 3.12 · zamknięta beta 0.7.2</p>
+      <span class="private"><a href="https://github.com/LukaszTM/BoxBox-Academy-Pobieranie/releases/tag/v0.7.1-beta" target="_blank" rel="noopener">Publiczny instalator beta</a> · kod źródłowy prywatny</span>
+    </div>
+    <h1 id="h-boxbox">BoxBox Academy: mechanik na radiu, który uczy jazdy w F1 25</h1>
+    <p class="proj-sub">Program odbiera telemetrię, którą gra wysyła 60 razy na sekundę, porównuje każdy zakręt z okrążeniem odniesienia i mówi głosem mechanika, co poprawić.</p>
+    <p class="focus"><b>Na co patrzeć:</b> własny parser pakietów UDP, silnik reguł oddzielony od interfejsu i dziennik sesji, w którym każdy błąd ma przyczynę i naprawę.</p>
+    <ul class="chips"><li>Python 14 920 linii, 99 modułów</li><li>pytest 335 testów</li><li>PySide6</li><li>SQLite</li><li>UDP + struct</li><li>PyInstaller + Inno Setup</li><li>GitHub Actions</li></ul>
+  </div>
+
+  <figure>
+    <button type="button" class="zoom" data-zoom="../../assets/img/bb-okno.webp" data-cap="Sesja na żywo odtworzona z nagrania z Monzy" aria-label="Powiększ zrzut: sesja na żywo"><img src="../../assets/img/bb-okno.webp" width="1440" height="900" alt="Okno BoxBox Academy podczas sesji: okrążenie 4, następny zakręt T1-T2 za 1019 m, czasy sektorów, ostatnie komunikaty mechanika i wykres prędkości na tle najlepszego okrążenia."></button>
+    <figcaption>Sesja na żywo odtworzona z nagrania z Monzy: następny zakręt, sektory, komunikaty mechanika i prędkość na tle najlepszego okrążenia. Zrzut z działającej aplikacji 0.7.2-beta, 11.11.2026.</figcaption>
+  </figure>
+
+  <div class="shotsec">
+    <h2 class="h-sm">Ekrany aplikacji</h2>
+    <div class="gal">
+    <figure><button type="button" class="zoom" data-zoom="../../assets/img/bb-start.webp" data-cap="Start: konfiguracja sesji i cel treningu" aria-label="Powiększ zrzut: Start: konfiguracja sesji i cel treningu"><img src="../../assets/img/bb-start.webp" width="1440" height="900" loading="lazy" alt="Ekran Start: konfiguracja sesji z wyborem trybu Auto, Nauka albo Wyścig, przełączniki nagrywania i nakładki, czas ostatniej sesji 1:26.918 i cel treningu."></button><figcaption>Start: konfiguracja sesji i cel treningu</figcaption></figure>
+    <figure><button type="button" class="zoom" data-zoom="../../assets/img/bb-podsumowanie.webp" data-cap="Podsumowanie: co poszło dobrze i co poprawić" aria-label="Powiększ zrzut: Podsumowanie: co poszło dobrze i co poprawić"><img src="../../assets/img/bb-podsumowanie.webp" width="1440" height="900" loading="lazy" alt="Podsumowanie sesji: 6 okrążeń, najlepsze 1:26.918, 3 z 6 czystych, sekcje Dobrze i Do pracy oraz opis stylu jazdy."></button><figcaption>Podsumowanie: co poszło dobrze i co poprawić</figcaption></figure>
+    <figure><button type="button" class="zoom" data-zoom="../../assets/img/bb-analiza.webp" data-cap="Analiza: telemetria okrążenia i mapa toru" aria-label="Powiększ zrzut: Analiza: telemetria okrążenia i mapa toru"><img src="../../assets/img/bb-analiza.webp" width="1440" height="900" loading="lazy" alt="Analiza: wykresy prędkości, gazu i hamulca na tle okrążenia odniesienia oraz mapa toru Monza z zaznaczonymi zakrętami."></button><figcaption>Analiza: telemetria okrążenia i mapa toru</figcaption></figure>
+    <figure><button type="button" class="zoom" data-zoom="../../assets/img/bb-umiejetnosci.webp" data-cap="Umiejętności: sześć wymiarów jazdy w skali 0–100" aria-label="Powiększ zrzut: Umiejętności: sześć wymiarów jazdy w skali 0–100"><img src="../../assets/img/bb-umiejetnosci.webp" width="1440" height="900" loading="lazy" alt="Umiejętności: wykres radarowy i sześć kart z wynikami w skali 0–100, między innymi hamowanie 80, praca hamulcem 96, tempo 87."></button><figcaption>Umiejętności: sześć wymiarów jazdy w skali 0–100</figcaption></figure>
+    <figure><button type="button" class="zoom" data-zoom="../../assets/img/bb-postep.webp" data-cap="Postęp: kroki wyłączania asyst i trend czasów" aria-label="Powiększ zrzut: Postęp: kroki wyłączania asyst i trend czasów"><img src="../../assets/img/bb-postep.webp" width="1440" height="900" loading="lazy" alt="Postęp: krok 2 z asystą TC średnią, pasek czystych okrążeń, trend czasów i najlepsze czasy według kroku asyst."></button><figcaption>Postęp: kroki wyłączania asyst i trend czasów</figcaption></figure>
+    <figure><button type="button" class="zoom" data-zoom="../../assets/img/bb-lekcje.webp" data-cap="Lekcje: program treningowy z siedmioma ćwiczeniami" aria-label="Powiększ zrzut: Lekcje: program treningowy z siedmioma ćwiczeniami"><img src="../../assets/img/bb-lekcje.webp" width="1440" height="900" loading="lazy" alt="Lekcje: siedem kart programu treningowego, między innymi hamowanie w jednym zakręcie, gaz na wyjściu, czyste okrążenie i trail-braking."></button><figcaption>Lekcje: program treningowy z siedmioma ćwiczeniami</figcaption></figure>
+    <figure><button type="button" class="zoom" data-zoom="../../assets/img/bb-karta.webp" data-cap="Karta kierowcy: licencja i statystyki" aria-label="Powiększ zrzut: Karta kierowcy: licencja i statystyki"><img src="../../assets/img/bb-karta.webp" width="1440" height="900" loading="lazy" alt="Karta kierowcy: licencja z poziomem L2, liczba sesji, okrążeń i torów oraz najlepszy czas na Monzy."></button><figcaption>Karta kierowcy: licencja i statystyki</figcaption></figure>
+    <figure><button type="button" class="zoom" data-zoom="../../assets/img/bb-hud.webp" data-cap="HUD F1: edytor nakładki wyświetlanej na grze" aria-label="Powiększ zrzut: HUD F1: edytor nakładki wyświetlanej na grze"><img src="../../assets/img/bb-hud.webp" width="1440" height="900" loading="lazy" alt="Zakładka HUD F1: edytor ośmiu modułów nakładki na tle widoku z kamery, z suwakami krycia i skali."></button><figcaption>HUD F1: edytor nakładki wyświetlanej na grze</figcaption></figure>
+    </div>
+    <p class="demo-note">Wszystkie zrzuty pochodzą z programu uruchomionego z kodu źródłowego, z danymi jednej sesji z nagrania. Kliknij zrzut, żeby go powiększyć.</p>
+  </div>
+
+  <div class="cols">
+    <div class="prose">
+      <h2 class="h-sm">Jak działa</h2>
+      <ol class="steps">
+        <li>Gra wysyła pakiety UDP na port 20777. Własny parser czyta oba formaty pakietów: 2025 i 2026.</li>
+        <li>Okrążenie jest dzielone na zakręty. Dla każdego program liczy punkt hamowania, prędkość minimalną, bieg i moment pełnego gazu.</li>
+        <li>Dziewięć reguł porównuje zakręt z okrążeniem odniesienia. Trener milczy, gdy strata jest mniejsza niż 0,3 s, bo tyle wynosi zwykły rozrzut między czystymi okrążeniami.</li>
+        <li>Komunikat trafia do kolejki głosu: gotowe klipy z efektem radia, bez internetu.</li>
+        <li>Sesja zapisuje się w bazie SQLite i w nagraniu, które można odtworzyć bez gry.</li>
+      </ol>
+    </div>
+    <div class="prose">
+      <h2 class="h-sm">Od planu do wydania</h2>
+      <p>Projekt ma plan etapów, specyfikację funkcji, plan testów i notatki wydań. Zmiany wchodzą przez pull requesty: scalonych jest 36.</p>
+      <p>Instalator dla Windows buduje się w GitHub Actions. Program sam sprawdza nowe wydanie, pobiera instalator i weryfikuje sumę SHA-256.</p>
+      <p>Wersję 0.7.2-beta dostali testerzy. Mają przewodnik, formularze sesji i polecenie, które pakuje dziennik, bazę i ostatnie nagranie do jednego pliku ZIP ze zgłoszeniem błędu.</p>
+    </div>
+  </div>
+
+  <div class="demo" id="demo-bb">
+    <div class="demo-head">
+      <p class="eyebrow">Demo na żywo</p>
+      <p class="demo-note">Prawdziwa sesja z repozytorium: trening na Monzy, 26.10.2026. Tor jazdy, prędkość i komunikaty to wynik programu uruchomionego na tym nagraniu (<code>--replay</code>, 10.11.2026).</p>
+    </div>
+    <div class="demo-body">
+      <div class="btnrow">
+        <span class="btnrow-label" id="bb-laps-label">Wybierz okrążenie. Na czwartym kierowca celowo spóźnił hamowanie przed pierwszą szykaną.</span>
+        <div class="seg" role="group" aria-labelledby="bb-laps-label" id="bb-laps"></div>
+      </div>
+      <div class="bb-grid">
+        <div class="bb-map">
+          <svg id="bb-map" viewBox="0 0 400 440" role="img" aria-label="Tor Monza narysowany z pozycji auta w nagraniu, z zaznaczonymi sześcioma strefami zakrętów i bieżącą pozycją."></svg>
+        </div>
+        <div style="display:grid;gap:10px">
+          <ul class="legend">
+            <li><i></i><span id="bb-leg-sel">okrążenie 4</span></li>
+            <li><i class="ref"></i><span>okrążenie 3 (czyste, do porównania)</span></li>
+          </ul>
+          <div class="bb-chart"><svg id="bb-chart" viewBox="0 0 720 250" role="img" aria-label="Wykres prędkości w funkcji dystansu okrążenia dla wybranego okrążenia i okrążenia trzeciego."></svg></div>
+          <div class="bb-pos">
+            <label for="bb-pos">Pozycja na torze (przesuń albo najedź na wykres)</label>
+            <input type="range" id="bb-pos" min="0" max="5780" step="20" value="900">
+          </div>
+          <p class="bb-read" id="bb-read" aria-live="polite"></p>
+        </div>
+      </div>
+      <div>
+        <div class="h3row"><h2 class="h-sm">Co powiedział mechanik na tym okrążeniu</h2><span class="demo-note" id="bb-count"></span></div>
+        <ol class="radio" id="bb-radio"></ol>
+      </div>
+      <div class="voice">
+        <span class="btnrow-label">Głos mechanika: klipy z programu (wymaga dźwięku).</span>
+        <button type="button" class="btn" data-clip="hello">Powitanie</button>
+        <button type="button" class="btn" data-clip="brake">Hamowanie dużo za późno</button>
+        <button type="button" class="btn" data-clip="throttle">Gaz za wcześnie</button>
+        <button type="button" class="btn" data-clip="streak">Czyste okrążenie</button>
+        <audio id="bb-a-hello" preload="none" src="../../assets/audio/misc_hello.mp3"></audio>
+        <audio id="bb-a-brake" preload="none" src="../../assets/audio/v2_brake_late_big_t1_2_200.mp3"></audio>
+        <audio id="bb-a-throttle" preload="none" src="../../assets/audio/rule_throttle_early_a.mp3"></audio>
+        <audio id="bb-a-streak" preload="none" src="../../assets/audio/misc_streak_1.mp3"></audio>
+      </div>
+      <details class="log">
+        <summary>Prędkość w szczycie każdego zakrętu jako tabela</summary>
+        <div class="logbody"><div class="tscroll"><table class="t"><thead><tr><th>Zakręt</th><th>Szczyt (m)</th><th id="bb-th-sel">Okr. 4 (km/h)</th><th>Okr. 3 (km/h)</th><th>Różnica</th></tr></thead><tbody id="bb-table"></tbody></table></div></div>
+      </details>
+    </div>
+  </div>
+
+  <div class="evidence">
+    <h2 class="h-sm">Testy i sesje z grą</h2>
+    <ul>
+      <li><b>Testy automatyczne</b>: 335 testów w 58 plikach. Uruchomione 10.11.2026 (Python 3.13): 334 zaliczone, 1 pominięty.</li>
+      <li><b>Nagrania jako dane testowe</b>: silnik dostaje strumień pakietów i zwraca komunikaty, więc każdą regułę da się sprawdzić na nagraniu bez włączonej gry. Nagranie z tego dema ma 287 129 pakietów i program odczytał je bez jednego błędu.</li>
+      <li><b>Plan testów</b>: 20 obszarów testów automatycznych i dziennik sesji z grą. Trzy wpisy z tego dziennika:</li>
+    </ul>
+    <div class="sessions">
+      <div><b>S-05</b><div><p>Trenera nie słychać podczas jazdy.</p><p>Przyczyna: biblioteka dźwięku w Windows nie odtwarza klipu z pamięci w trybie asynchronicznym. Naprawa: odtwarzanie synchroniczne w osobnym wątku.</p></div></div>
+      <div><b>S-07</b><div><p>Mechanik mówił co innego niż zapis w konsoli.</p><p>Naprawa: głos i tekst biorą treść z jednego źródła, a ocena zakrętu czeka na pełny gaz.</p></div></div>
+      <div><b>S-08</b><div><p>Przez całą sesję tylko powitanie, choć odtworzenie nagrania dawało 17 komunikatów.</p><p>Przyczyna: reguła w <code>.gitignore</code> ukryła pliki torów, więc świeża kopia ich nie miała. Naprawa: pliki dodane, test regresji, dziennik sesji i czerwony komunikat na nakładce, gdy trener nie wystartuje.</p></div></div>
+    </div>
+    
+  </div>
+</article>
+
+<section class="sec" aria-labelledby="h-arch">
+  <h2 id="h-arch">Architektura</h2>
+  <p class="intro">Silnik nigdy nie dotyka interfejsu ani dźwięku: dostaje strumień pakietów i zwraca listę komunikatów. Dzięki temu ten sam kod działa na żywo z grą i na nagraniu z pliku.</p>
+  <div class="tscroll"><table class="t">
+    <thead><tr><th>Pakiet</th><th>Za co odpowiada</th><th>Pliki</th><th>Linie</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">telemetry/</td><td>Odbiór UDP, nagłówek i parsery pakietów, nagrywanie i odtwarzanie sesji</td><td class="mono">18</td><td class="mono">1 576</td></tr>
+      <tr><td class="mono">coach/</td><td>Trener: okrążenia, zakręty, reguły, ERS, sektory, postęp, lekcje</td><td class="mono">30</td><td class="mono">4 188</td></tr>
+      <tr><td class="mono">engineer/</td><td>Inżynier wyścigowy i kwalifikacyjny: start, tempo, podsumowania</td><td class="mono">6</td><td class="mono">1 131</td></tr>
+      <tr><td class="mono">gui/</td><td>Okno programu, nakładka na grę, ustawienia, raport</td><td class="mono">16</td><td class="mono">3 658</td></tr>
+      <tr><td class="mono">tracks/</td><td>Model toru, wykrywanie zakrętów, 28 obrysów torów</td><td class="mono">6</td><td class="mono">852</td></tr>
+      <tr><td class="mono">storage/</td><td>Baza SQLite: sesje, okrążenia, metryki, postęp</td><td class="mono">2</td><td class="mono">498</td></tr>
+    </tbody>
+  </table></div>
+</section>
+<section class="sec" aria-labelledby="h-progi">
+  <h2 id="h-progi">Progi reguł trenera</h2>
+  <p class="intro">Progi nie są zgadywane. Pochodzą z nagrań: różnice między czystymi okrążeniami tego samego kierowcy sięgają 0,3 s i 50 m hamowania na zakręt, więc komunikat wymaga straty wyraźnie powyżej tego szumu.</p>
+  <div class="tscroll"><table class="t">
+    <thead><tr><th>Reguła</th><th>Próg</th><th>Co mówi mechanik</th></tr></thead>
+    <tbody>
+      <tr><td>Minimalna strata czasu</td><td class="mono">0,3 s</td><td>Poniżej tej straty na zakręt trener milczy</td></tr>
+      <tr><td>Hamowanie za późno</td><td class="mono">20 m</td><td>„Hamowanie za późno, o jakieś czterdzieści metrów”</td></tr>
+      <tr><td>Hamowanie za wcześnie</td><td class="mono">25 m</td><td>„Do apeksu dojeżdżasz z zapasem, możesz hamować później”</td></tr>
+      <tr><td>Pełny gaz za późno</td><td class="mono">30 m</td><td>„Gdy kierownica się prostuje, dodawaj gaz pewniej”</td></tr>
+      <tr><td>Utrata przyczepności</td><td class="mono">60%</td><td>Prędkość minimalna poniżej 60% okrążenia odniesienia</td></tr>
+      <tr><td>Liczba uwag po okrążeniu</td><td class="mono">3</td><td>Tylko trzy najważniejsze, żeby nie zasypać kierowcy</td></tr>
+    </tbody>
+  </table></div>
+</section>
+<section class="sec" aria-labelledby="h-sesje">
+  <h2 id="h-sesje">Dziennik sesji z grą</h2>
+  <p class="intro">Większość błędów znalezionych na żywo nie była w logice trenera, tylko w otoczeniu: dźwięk w Windows, głośność, brak plików w świeżej kopii. Dlatego każda sesja zostawia dziennik.</p>
+  <div class="tscroll"><table class="t">
+    <thead><tr><th>Sesja</th><th>Co testowano</th><th>Wynik</th><th>Co znaleziono i naprawiono</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">S-01</td><td>Bahrajn, Time Trial, 6 okrążeń</td><td><span class="badge pass">OK</span></td><td>Pakiet ruchu liczony jako nieznany, identyfikator sesji nie mieścił się w bazie, puste okrążenie z garażu</td></tr>
+      <tr><td class="mono">S-03</td><td>Suzuka bez kontroli trakcji</td><td><span class="badge pass">OK</span></td><td>Fałszywe minima prędkości i nachodzące na siebie zakręty</td></tr>
+      <tr><td class="mono">S-04</td><td>Pakiet 2026, Monza</td><td><span class="badge pass">OK</span></td><td>Format 2026: 24 auta i nowe pola sesji obsłużone w jednym kodzie</td></tr>
+      <tr><td class="mono">S-05</td><td>Monza, pierwszy test głosu</td><td><span class="badge fail">BŁĄD</span></td><td>Trenera nie słychać. Naprawa: odtwarzanie synchroniczne w wątku</td></tr>
+      <tr><td class="mono">S-06</td><td>Monza, test głosu 2</td><td><span class="badge idle">CZĘŚCIOWO</span></td><td>Za cicho i za rzadko. Naprawa: głośniejsze klipy, niższy próg straty, komunikaty o okrążeniu wyjazdowym</td></tr>
+      <tr><td class="mono">S-07</td><td>Monza, test głosu 3</td><td><span class="badge idle">CZĘŚCIOWO</span></td><td>Głos różnił się od zapisu. Naprawa: jedno źródło tekstu</td></tr>
+      <tr><td class="mono">S-08</td><td>Monza, partia 1</td><td><span class="badge fail">BŁĄD</span></td><td>Tylko powitanie. Przyczyna: pliki torów poza repozytorium. Naprawa i test regresji</td></tr>
+      <tr><td class="mono">S-09</td><td>Monza, jazda po naprawie</td><td><span class="badge pass">OK</span></td><td>Trener mówi przez całą sesję</td></tr>
+    </tbody>
+  </table></div>
+</section>
+<p class="pager"><a href="../../projekty/moj-lan/index.html">← Mój Łan</a><a href="../../projekty/porzadmis/index.html">PorządMiś →</a></p>
+</main>
+<footer class="site-foot"><div class="wrap">
+  <nav aria-label="Stopka"><a href="../../index.html">Wróć do wyboru roli</a><a href="../../projekty/index.html">Wszystkie projekty</a><a href="../../pytania/index.html">Pytania i kontakt</a><a href="https://github.com/LukaszTM" target="_blank" rel="noopener">GitHub</a></nav>
+  <p>Projekty własne i dowody techniczne · listopad 2026 · bez fikcyjnych wyników AI. Dema to wierne przeniesienia fragmentów logiki do JavaScript albo dane z prawdziwych nagrań, a nie pełne programy.</p>
+</div></footer>
+<script src="../../assets/js/common.js"></script>
+<script src="../../assets/js/monza-data.js"></script>
+<script src="../../assets/js/boxbox.js"></script>
+</body>
+</html>

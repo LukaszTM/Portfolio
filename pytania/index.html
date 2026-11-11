@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pytania i kontakt · Łukasz Kap</title>
+<meta name="description" content="Odpowiedzi na pytania rekrutera i kontakt.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#tresc">Przejdź do treści</a>
+<header class="site"><div class="wrap nav">
+  <a class="brand" href="../index.html"><span>ŁK/</span> Łukasz Kap</a>
+  <nav aria-label="Główna"><ul><li><a href="../index.html">Start</a></li><li><a href="../mobile/index.html">Mobile</a></li><li><a href="../systems/index.html">Systems</a></li><li><a href="../agentic/index.html">Agentic</a></li><li><a href="../projekty/index.html">Projekty</a></li><li><a href="../pytania/index.html" aria-current="page">Pytania i kontakt</a></li><li><a href="https://github.com/LukaszTM" target="_blank" rel="noopener">GitHub</a></li></ul></nav>
+</div></header>
+<main id="tresc" class="wrap">
+<p class="crumbs"><a href="../index.html">Start</a> / Pytania i kontakt</p>
+<section class="hero" style="padding-top:14px"><p class="eyebrow">Pytania i kontakt</p><h1>Krótkie odpowiedzi</h1><p class="ident">Łukasz Kap · okolice Radzynia Podlaskiego · GitHub: LukaszTM</p></section>
+<section class="sec" aria-labelledby="h-pyt">
+  <h2 id="h-pyt">Pytania, które zwykle padają</h2>
+  <div class="faq">
+    <details open>
+      <summary>Skoro kod pisze AI, to co robisz Ty?</summary>
+      <div class="a"><p>Używam asystentów do szybszego tworzenia i porządkowania kodu, ale odpowiedzialność za kryteria, przegląd, testy i rezultat pozostaje po mojej stronie. Decyduję, co ma powstać i w jakiej kolejności, pilnuję zasad projektu i sprawdzam wynik.</p><p>W BoxBox Academy część błędów wyszła dopiero podczas sesji z grą, a nie w testach automatycznych: brak dźwięku w Windows, mechanik mówiący co innego niż zapis, pliki torów, których zabrakło w świeżej kopii repozytorium.</p></div>
+    </details>
+    <details>
+      <summary>Czy te testy naprawdę przechodzą?</summary>
+      <div class="a"><p>Stan na 10.11.2026: BoxBox Academy 334 z 335 testów (jeden pominięty), symulator nastawni 22 z 22, mostek do SimRail 30 z 30. Polecenia:</p>
+<pre>pytest
+godot --headless --path . res://tests/SmokeTest.tscn --quit-after 60000
+python -m unittest discover -s tests -v</pre>
+      <p>Aplikacje na Androida mają testy w repozytoriach: <code>flutter test</code>, <code>npm test</code> w katalogu funkcji oraz <code>./gradlew testDebugUnitTest</code>.</p></div>
+    </details>
+    <details>
+      <summary>Czy masz doświadczenie komercyjne w IT?</summary>
+      <div class="a"><p>Jeszcze nie. Wszystko na tej stronie to projekty własne. BoxBox Academy jest w zamkniętych testach u zewnętrznych testerów.</p></div>
+    </details>
+    <details>
+      <summary>Jakiej pracy szukasz?</summary>
+      <div class="a"><p>Stanowiska na poziomie junior, zdalnie lub hybrydowo: aplikacje mobilne, Python albo rola, w której buduje się oprogramowanie z agentami AI.</p></div>
+    </details>
+    <details>
+      <summary>Dlaczego kod BoxBox Academy jest prywatny?</summary>
+      <div class="a"><p>To produkt w zamkniętych testach. Publicznie dostępny jest instalator wersji beta, a szczegóły techniczne i kod omawiam podczas rozmowy.</p></div>
+    </details>
+    <details>
+      <summary>Jak uruchomić projekty u siebie?</summary>
+      <div class="a"><p>Symulator nastawni: Godot 4.3 lub nowszy, otwórz <code>project.godot</code> i naciśnij F5. Mostek do SimRail: <code>pip install -r requirements.txt</code>, potem <code>python -m simrail_tca run --config config/bez-ed.json --dry-run -v</code>. PorządMiś: <code>flutter pub get</code> i <code>flutter build apk --release --split-per-abi</code>. Shield ADV i Mr.Python: <code>./gradlew assembleDebug</code> albo gotowy plik APK z GitHub Actions.</p></div>
+    </details>
+  </div>
+</section>
+<section class="sec" id="kontakt" aria-labelledby="h-kontakt">
+  <h2 id="h-kontakt">Kontakt</h2>
+  <div class="contact">
+    <span>GitHub:</span>
+    <span class="addr" id="addr-gh">github.com/LukaszTM</span>
+    <button type="button" class="btn" data-copy="https://github.com/LukaszTM" data-copy-from="addr-gh">Kopiuj adres</button>
+    <a href="https://github.com/LukaszTM" target="_blank" rel="noopener">Otwórz profil</a>
+  </div>
+</section>
+</main>
+<footer class="site-foot"><div class="wrap">
+  <nav aria-label="Stopka"><a href="../index.html">Wróć do wyboru roli</a><a href="../projekty/index.html">Wszystkie projekty</a><a href="../pytania/index.html">Pytania i kontakt</a><a href="https://github.com/LukaszTM" target="_blank" rel="noopener">GitHub</a></nav>
+  <p>Projekty własne i dowody techniczne · listopad 2026 · bez fikcyjnych wyników AI. Dema to wierne przeniesienia fragmentów logiki do JavaScript albo dane z prawdziwych nagrań, a nie pełne programy.</p>
+</div></footer>
+<script src="../assets/js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shield ADV · Łukasz Kap</title>
+<meta name="description" content="Bloker natarczywych reklam dla seniorów: lokalny VPN filtruje zapytania DNS na telefonie, bez zewnętrznego serwera.">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#tresc">Przejdź do treści</a>
+<header class="site"><div class="wrap nav">
+  <a class="brand" href="../../index.html"><span>ŁK/</span> Łukasz Kap</a>
+  <nav aria-label="Główna"><ul><li><a href="../../index.html">Start</a></li><li><a href="../../mobile/index.html">Mobile</a></li><li><a href="../../systems/index.html">Systems</a></li><li><a href="../../agentic/index.html">Agentic</a></li><li><a href="../../projekty/index.html" aria-current="page">Projekty</a></li><li><a href="../../pytania/index.html">Pytania i kontakt</a></li><li><a href="https://github.com/LukaszTM" target="_blank" rel="noopener">GitHub</a></li></ul></nav>
+</div></header>
+<main id="tresc" class="wrap">
+<p class="crumbs"><a href="../../index.html">Start</a> / <a href="../../projekty/index.html">Projekty</a> / Shield ADV</p>
+<article class="proj" aria-labelledby="h-shield">
+  <div class="proj-head">
+    <div class="proj-kind">
+      <p class="eyebrow">Aplikacja na Androida · Kotlin</p>
+      <a href="https://github.com/LukaszTM/Senior-web-shield" target="_blank" rel="noopener">Repozytorium</a>
+    </div>
+    <h1 id="h-shield">Shield ADV: bloker natarczywych reklam dla seniorów</h1>
+    <p class="proj-sub">Jeden duży przycisk włącza ochronę. Aplikacja zatrzymuje reklamy i strony z oszustwami w innych aplikacjach i grach, bez roota i bez zewnętrznego serwera VPN.</p>
+    <p class="focus"><b>Na co patrzeć:</b> praca na poziomie pakietów sieciowych: własny parser DNS, pamięć podręczna i odpowiedzi budowane ręcznie.</p>
+    <ul class="chips"><li>Kotlin 2 078 linii</li><li>VpnService</li><li>własny parser DNS</li><li>24 testy jednostkowe</li><li>GitHub Actions (APK)</li><li>polski i angielski</li></ul>
+  </div>
+
+  <div class="cols">
+    <div class="prose">
+      <h2 class="h-sm">Jak działa</h2>
+      <ol class="steps">
+        <li>Aplikacja tworzy na telefonie lokalny tunel VPN, przez który przechodzą wyłącznie zapytania DNS. Reszta ruchu idzie normalną drogą.</li>
+        <li>Każde zapytanie jest sprawdzane na telefonie na trzech listach: wbudowanej, liście ostrzeżeń CERT Polska i filtrze AdGuard DNS.</li>
+        <li>Zablokowana domena dostaje odpowiedź „nie istnieje”, więc reklama się nie ładuje.</li>
+        <li>Pozostałe zapytania trafiają do serwera DNS operatora, dzięki czemu internet działa tak samo szybko jak bez aplikacji.</li>
+      </ol>
+    </div>
+    <div class="prose">
+      <h2 class="h-sm">Co było trudne</h2>
+      <p>Pierwsza wersja spowalniała internet. Historia zmian pokazuje naprawę: pamięć podręczna odpowiedzi DNS, wspólne gniazdo do serwera, odpowiedź RST dla połączeń TCP i oznaczenie VPN jako sieci bez limitu danych.</p>
+      <p>Pobierane listy mają setki tysięcy domen, więc są trzymane jako posortowane 64-bitowe skróty zamiast tekstu.</p>
+    </div>
+  </div>
+
+  <div class="shotsec">
+    <h2 class="h-sm">Ekrany aplikacji na telefonie</h2>
+    <div class="gal phones4">
+    <figure><button type="button" class="zoom" data-zoom="../../assets/img/sh-ochrona.webp" data-cap="Ochrona: jeden duży przycisk, czytelny dla seniora" aria-label="Powiększ zrzut: Ochrona: jeden duży przycisk, czytelny dla seniora"><img src="../../assets/img/sh-ochrona.webp" width="560" height="1142" loading="lazy" alt="Ekran Ochrona: tarcza z logo Shield ADV, napis Ochrona włączona i duży czerwony przycisk Wyłącz ochronę."></button><figcaption>Ochrona: jeden duży przycisk, czytelny dla seniora</figcaption></figure>
+    <figure><button type="button" class="zoom" data-zoom="../../assets/img/sh-zablokowane.webp" data-cap="Zablokowane: domeny zatrzymane na tym telefonie" aria-label="Powiększ zrzut: Zablokowane: domeny zatrzymane na tym telefonie"><img src="../../assets/img/sh-zablokowane.webp" width="560" height="1142" loading="lazy" alt="Ekran Zablokowane strony: 300 pozycji, przy każdej ocena ryzyka, nazwa domeny, opis i liczba zablokowań, na przykład app-measurement.com zablokowana 1035 razy."></button><figcaption>Zablokowane: domeny zatrzymane na tym telefonie</figcaption></figure>
+    </div>
+    <p class="demo-note">Zrzuty z telefonu z włączoną ochroną, 11.11.2026. Kliknij zrzut, żeby go powiększyć.</p>
+  </div>
+
+  <div class="demo" id="demo-sh">
+    <div class="demo-head">
+      <p class="eyebrow">Demo na żywo</p>
+      <p class="demo-note">Funkcje <code>BlockList.parse</code> i <code>BlockList.lookup</code> przeniesione do JavaScript. Lista to wbudowany plik <code>blocklist.txt</code> z aplikacji.</p>
+    </div>
+    <div class="demo-body">
+      <div class="dns">
+        <form id="sh-form">
+          <label for="sh-in">Domena:</label>
+          <input type="text" id="sh-in" value="pagead2.googlesyndication.com" autocomplete="off" spellcheck="false">
+          <button type="submit" class="btn btn-primary">Sprawdź</button>
+        </form>
+        <div class="btnrow">
+          <span class="btnrow-label">Przykłady:</span>
+          <button type="button" class="btn btn-sm" data-dom="ads.facebook.com">ads.facebook.com</button>
+          <button type="button" class="btn btn-sm" data-dom="stats.g.doubleclick.net">stats.g.doubleclick.net</button>
+          <button type="button" class="btn btn-sm" data-dom="www.google.com">www.google.com</button>
+          <button type="button" class="btn btn-sm" data-dom="wp.pl">wp.pl</button>
+        </div>
+        <div class="verdict" id="sh-out" aria-live="polite"></div>
+        <p class="demo-note" id="sh-size"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="evidence">
+    <h2 class="h-sm">Testy w repozytorium</h2>
+    <ul>
+      <li><b>DNS</b>, 9 testów: odczyt pakietu IPv4 i pytania DNS, odrzucanie uszkodzonych pakietów, budowanie odpowiedzi „nie istnieje” dla IPv4 i IPv6.</li>
+      <li><b>Listy</b>, 8 testów: kategorie, subdomeny, reguły AdGuard z wyjątkami, format hosts, pierwszeństwo filtrów.</li>
+      <li><b>Pamięć podręczna i TCP</b>, 7 testów: czas życia wpisów, usuwanie najdawniej używanych, odpowiedź RST.</li>
+    </ul>
+    <p class="demo-note">Każda zmiana uruchamia GitHub Actions, który buduje plik APK.</p>
+  </div>
+</article>
+
+
+<section class="sec" aria-labelledby="h-sen">
+  <h2 id="h-sen">Zaprojektowane dla seniora</h2>
+  <div class="gates">
+    <div><b>Jeden wielki przycisk</b><span>Zielony włącza ochronę, czerwony wyłącza. Nic więcej.</span></div>
+    <div><b>Czytelność</b><span>Duże czcionki, kontrastowe kolory i proste komunikaty po polsku.</span></div>
+    <div><b>Widać, że działa</b><span>Licznik zablokowanych reklam i lista zatrzymanych stron z oceną ryzyka.</span></div>
+    <div><b>Bez pamiętania</b><span>Ochrona startuje sama po restarcie telefonu.</span></div>
+  </div>
+</section>
+<section class="sec" aria-labelledby="h-hist">
+  <h2 id="h-hist">Historia zmian</h2>
+  <div class="tscroll"><table class="t">
+    <thead><tr><th>Data</th><th>Zmiana</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">13.09.2026</td><td>Pierwsza wersja: bloker reklam w aplikacjach dla seniorów</td></tr>
+      <tr><td class="mono">14.09.2026</td><td>GitHub Actions buduje plik APK</td></tr>
+      <tr><td class="mono">17.09.2026</td><td>Zakładka „Zablokowane” z oceną bezpieczeństwa każdej strony</td></tr>
+      <tr><td class="mono">05.10.2026</td><td>Naprawa wolnego internetu: pamięć podręczna DNS, wspólne gniazdo, odpowiedź RST dla TCP</td></tr>
+      <tr><td class="mono">05.10.2026</td><td>Wersja 1.2: zapytania przez DNS operatora, filtrowanie listami na telefonie</td></tr>
+      <tr><td class="mono">05.10.2026</td><td>Wersja 1.2.1: pobrane listy jako posortowane 64-bitowe skróty</td></tr>
+    </tbody>
+  </table></div>
+</section>
+<p class="pager"><a href="../../projekty/thrustmaster-simrail/index.html">← Thrustmaster → SimRail</a><a href="../../projekty/mr-python/index.html">Mr.Python →</a></p>
+</main>
+<footer class="site-foot"><div class="wrap">
+  <nav aria-label="Stopka"><a href="../../index.html">Wróć do wyboru roli</a><a href="../../projekty/index.html">Wszystkie projekty</a><a href="../../pytania/index.html">Pytania i kontakt</a><a href="https://github.com/LukaszTM" target="_blank" rel="noopener">GitHub</a></nav>
+  <p>Projekty własne i dowody techniczne · listopad 2026 · bez fikcyjnych wyników AI. Dema to wierne przeniesienia fragmentów logiki do JavaScript albo dane z prawdziwych nagrań, a nie pełne programy.</p>
+</div></footer>
+<script src="../../assets/js/common.js"></script>
+<script src="../../assets/js/blocklist-data.js"></script>
+<script src="../../assets/js/shield.js"></script>
+</body>
+</html>

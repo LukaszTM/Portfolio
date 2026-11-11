@@ -1,55 +1,31 @@
-# Portfolio programistyczne — Łukasz
+# Portfolio programistyczne — Łukasz Kap
 
-Strona portfolio z demonstracjami projektów działającymi w przeglądarce. Czysty HTML, CSS i JavaScript, bez budowania i bez zależności.
+Wielostronicowe portfolio do publikacji na GitHub Pages. Zachowuje adresy poprzedniej wersji
+(`mobile/`, `systems/`, `agentic/` oraz kotwice `#projekty`, `#dowody`, `#ai`).
 
-## Publikacja na GitHub Pages
+## Strony
 
-1. Wgraj całą zawartość tego folderu do repozytorium `Portfolio` (plik `index.html` ma leżeć w katalogu głównym).
-2. W repozytorium otwórz Settings → Pages i sprawdź, że źródłem jest gałąź `main` i katalog `/ (root)`.
-3. Po minucie strona będzie pod adresem `https://lukasztm.github.io/Portfolio/`.
+- `index.html` — start: wybór roli i siedem projektów.
+- `mobile/`, `systems/`, `agentic/` — trzy role, każda z wybranymi projektami.
+- `projekty/` — lista projektów; każdy projekt ma własną stronę z działającym demem:
+  `moj-lan`, `boxbox-academy`, `porzadmis`, `dyzurny-ruchu`, `thrustmaster-simrail`, `shield-adv`, `mr-python`.
+- `pytania/` — pytania rekrutera i kontakt.
 
-Stare adresy `mobile/`, `systems/` i `agentic/` przekierowują do nowej strony z wybraną rolą, więc wcześniej wysłane linki nadal działają.
+## Zasoby
 
-## Co uzupełnić
+- `assets/css/site.css` — jeden arkusz stylów, motyw jasny i ciemny.
+- `assets/js/common.js` — wspólne funkcje; pozostałe pliki to dema poszczególnych projektów.
+- `assets/js/monza-data.js` — dane z nagrania `monza-trening_2026-10-26` (tor jazdy, prędkość, komunikaty).
+- `assets/js/blocklist-data.js` — wbudowana lista domen z aplikacji Shield ADV.
+- `assets/js/mojlan-data.js` — obowiązki i współczynniki z pliku `reguly_prawne.json` aplikacji Mój Łan.
+- `assets/img`, `assets/audio` — zrzuty z działających programów i klipy głosu mechanika.
 
-- **Kontakt:** w pliku `js/main.js`, na samej górze, wpisz e-mail, adres LinkedIn i nazwę pliku CV. Puste pole oznacza, że przycisk się nie pokaże.
-- **O mnie:** sekcja `id="o-mnie"` w `index.html`. Zmień albo usuń tekst według uznania.
-- **BoxBox Academy:** gdy upublicznisz kod, zamień notkę o prywatnym repozytorium na link (komentarz w `index.html` pokazuje jak).
+## Publikacja
 
-## Linki pod konkretną rolę
+1. Repozytorium: `https://github.com/LukaszTM/Portfolio`.
+2. Prześlij zawartość tego folderu do katalogu głównego gałęzi `main`.
+3. Settings → Pages → Deploy from a branch → `main` / `/ (root)`.
+4. Adres: `https://lukasztm.github.io/Portfolio/`.
 
-Strona układa projekty pod wybraną rolę. Każdy układ ma własny adres:
-
-- `…/Portfolio/?rola=ai` – wdrożenia i automatyzacja AI
-- `…/Portfolio/?rola=android` – aplikacje na Androida
-- `…/Portfolio/?rola=python` – Python
-
-## Struktura
-
-```
-index.html            treść strony
-css/style.css         wygląd strony
-css/demos.css         wygląd demonstracji
-js/main.js            dane kontaktowe i zwrotnica (wybór roli)
-js/demo-loader.js     uruchamianie demonstracji
-js/demos/             osiem demonstracji, po jednej na projekt
-js/data/              dane z repozytoriów: słownik Mój Łan, profile gatunków
-                      Kronikarza, lista blokad Shield ADV, motywy PorządMisia
-img/                  grafiki projektów
-assets/favicon.svg    ikona strony
-mobile/ systems/ agentic/   przekierowania ze starych adresów
-audio/                siedem komunikatów głosowych z BoxBox Academy
-```
-
-## Skąd pochodzą dane w demonstracjach
-
-| Demonstracja | Źródło |
-| --- | --- |
-| Mój Łan | wycinek słownika `assets/dane/slowniki.sqlite` (rejestr MRiRW, karencje z etykiet), komunikaty jak na ekranie „Zapisano” |
-| BoxBox Academy | teksty i nagrania z `assets/voice`, scenariusz okrążenia przykładowy |
-| Kronikarz | profile gatunków i zasady odpowiedzi z `narrator.go` |
-| PorządMiś | motywy z `assets/themes/*.json`, nazwy działów z `app_pl.arb` |
-| Shield ADV | lista z `assets/blocklist.txt`, dopasowanie jak w `BlockList.kt` |
-| Mr.Python | zadania pierwszej lekcji z `CourseContent.kt`, sprawdzanie jak w `AnswerChecker.kt` |
-| Dyżurny Ruchu | uproszczony układ torów, zasada nastawiania przebiegów jak w grze |
-| Thrustmaster Train Control | strefy i klawisze z profilu `config/z-ed.json` |
+Strona nie wymaga budowania ani serwera: to statyczne pliki HTML, CSS i JS.
+Liczby i logi pochodzą z repozytoriów, stan na 10 listopada 2026.
