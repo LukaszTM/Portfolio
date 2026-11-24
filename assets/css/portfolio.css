@@ -119,3 +119,19 @@ header.site nav a[aria-current="page"]{color:var(--accent);background:none;borde
   .feature-screen{margin-bottom:20px;align-self:center}
   .project-shortcuts a{padding:8px;font-size:.78rem}
 }
+
+/* Certificates on the About page */
+#certyfikaty{scroll-margin-top:110px}
+.certificate-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.certificate-card{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+.certificate-preview{display:flex;justify-content:center;padding:20px;background:var(--sunk);border-bottom:1px solid var(--line)}
+.certificate-preview img{display:block;width:100%;max-width:280px;height:auto;border-radius:3px;box-shadow:0 8px 24px #0004}
+.certificate-preview:hover{background:var(--accent-soft)}
+.certificate-body{display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding:24px}
+.certificate-body h3{font-size:1.4rem;letter-spacing:-.035em}
+.certificate-body p:not(.eyebrow),.certificate-body dt{color:var(--muted)}
+.certificate-body dl{display:grid;gap:10px;margin:0 0 6px;font-size:.9rem}
+.certificate-body dt{font-size:.78rem}
+.certificate-body dd{margin:3px 0 0}
+.certificate-body .btn{margin-top:auto;max-width:100%;white-space:normal;text-align:center}
+@media(max-width:710px){.certificate-grid{grid-template-columns:1fr}.certificate-body{padding:20px}}
